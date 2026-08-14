@@ -78,11 +78,17 @@ export class WaveManager {
     return wave;
   }
 
+  public updateSpawning(deltaMs: number): Attacker[] {
+    return this.updateSpawningTick(deltaMs);
+  }
+
   /**
-   * Advances the auto-send timer (wall-clock / game deltaMs).
+   * Advances the auto-send timer and spawns pending attackers on the 200ms spawning tick accumulator.
    */
-  public updateAutoTimer(deltaMs: number): void {
-    if (!this.isRunning) return;
+  public updateSpawningTick(deltaMs: number): Attacker[] {
+    if (!this.isRunning) return [];
+
+    // 1. Advance auto-send timer
     this.autoTimerMs -= deltaMs;
     if (this.autoTimerMs <= 0) {
       this.triggerWave();
@@ -92,12 +98,8 @@ export class WaveManager {
         this.autoTimerMs = this.loader.constants.wave_interval_ms;
       }
     }
-  }
 
-  /**
-   * Spawns pending attackers on the 200ms spawning tick accumulator.
-   */
-  public updateSpawning(deltaMs: number): Attacker[] {
+    // 2. Spawn pending attackers
     const spawned: Attacker[] = [];
 
     for (let i = this.pendingWaves.length - 1; i >= 0; i--) {

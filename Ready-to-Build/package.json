@@ -16,11 +16,11 @@
     "verify:maps": "tsx verify/maps.ts",
     "verify": "tsx verify/run-all.ts"
   },
-  "dependencies": {},
   "devDependencies": {
+    "@types/node": "^26.2.0",
+    "tsx": "^4.10.5",
     "typescript": "^5.4.5",
     "vite": "^5.2.11",
-    "vitest": "^1.6.0",
-    "tsx": "^4.10.5"
+    "vitest": "^1.6.0"
   }
 }
