@@ -1,0 +1,1774 @@
+{
+ "_generated_by": "generate_balance.py",
+ "_note": "All values derived. Edit parameters, never tables.",
+ "power_model": {
+  "formula": "damage * (rate_rpm/60) * sqrt(range/120)",
+  "range_reference": 120.0
+ },
+ "constants": {
+  "sigma": 1.065,
+  "bloom_level": 8,
+  "mult_floor": 0.2,
+  "base_hp": 12.0,
+  "wave_size": 10,
+  "lives": 10,
+  "combo_radius": 70,
+  "resale": 0.65,
+  "relocate_cost_x_build": 6,
+  "wave_interval_ms": 18000,
+  "spawn_interval_ms": 640
+ },
+ "families": {
+  "puffball": {
+   "label": "Puffball Battery",
+   "colour": "cyan",
+   "build_cost": 12,
+   "base": {
+    "damage": 9,
+    "range": 118,
+    "rate": 126
+   },
+   "base_power": 18.74,
+   "cost_per_base_power": 0.64,
+   "caps": {
+    "range": 232,
+    "rate": 290
+   },
+   "phi": 1.74,
+   "bloom_price_per_power": 1.3,
+   "cost_coefficient": 17.09,
+   "bloom_cost": 2045,
+   "power_at_bloom": 1574.7,
+   "ladders": {
+    "damage": [
+     {
+      "level": 1,
+      "value": 15.7,
+      "cost": 13,
+      "cumulative": 13
+     },
+     {
+      "level": 2,
+      "value": 27.2,
+      "cost": 23,
+      "cumulative": 36
+     },
+     {
+      "level": 3,
+      "value": 47.4,
+      "cost": 43,
+      "cumulative": 79
+     },
+     {
+      "level": 4,
+      "value": 82.5,
+      "cost": 80,
+      "cumulative": 159
+     },
+     {
+      "level": 5,
+      "value": 143.5,
+      "cost": 149,
+      "cumulative": 308
+     },
+     {
+      "level": 6,
+      "value": 249.8,
+      "cost": 276,
+      "cumulative": 584
+     },
+     {
+      "level": 7,
+      "value": 434.6,
+      "cost": 512,
+      "cumulative": 1096
+     },
+     {
+      "level": 8,
+      "value": 756.2,
+      "cost": 949,
+      "cumulative": 2045
+     },
+     {
+      "level": 9,
+      "value": 1315.8,
+      "cost": 1759,
+      "cumulative": 3804
+     },
+     {
+      "level": 10,
+      "value": 2289.5,
+      "cost": 3260,
+      "cumulative": 7064
+     },
+     {
+      "level": 11,
+      "value": 3983.7,
+      "cost": 6041,
+      "cumulative": 13105
+     },
+     {
+      "level": 12,
+      "value": 6931.6,
+      "cost": 11194,
+      "cumulative": 24299
+     },
+     {
+      "level": 13,
+      "value": 12061.0,
+      "cost": 20743,
+      "cumulative": 45042
+     },
+     {
+      "level": 14,
+      "value": 20986.1,
+      "cost": 38440,
+      "cumulative": 83482
+     }
+    ],
+    "range": [
+     {
+      "level": 1,
+      "value": 147.0,
+      "cost": 2,
+      "cumulative": 2
+     },
+     {
+      "level": 2,
+      "value": 168.7,
+      "cost": 1,
+      "cumulative": 3
+     },
+     {
+      "level": 3,
+      "value": 184.8,
+      "cost": 1,
+      "cumulative": 4
+     },
+     {
+      "level": 4,
+      "value": 196.8,
+      "cost": 1,
+      "cumulative": 5
+     },
+     {
+      "level": 5,
+      "value": 205.8,
+      "cost": 1,
+      "cumulative": 6
+     },
+     {
+      "level": 6,
+      "value": 212.5,
+      "cost": 1,
+      "cumulative": 7
+     },
+     {
+      "level": 7,
+      "value": 217.5,
+      "cost": 1,
+      "cumulative": 8
+     },
+     {
+      "level": 8,
+      "value": 221.2,
+      "cost": 1,
+      "cumulative": 9
+     },
+     {
+      "level": 9,
+      "value": 223.9,
+      "cost": 1,
+      "cumulative": 10
+     },
+     {
+      "level": 10,
+      "value": 226.0,
+      "cost": 1,
+      "cumulative": 11
+     },
+     {
+      "level": 11,
+      "value": 227.5,
+      "cost": 1,
+      "cumulative": 12
+     },
+     {
+      "level": 12,
+      "value": 228.7,
+      "cost": 1,
+      "cumulative": 13
+     },
+     {
+      "level": 13,
+      "value": 229.5,
+      "cost": 1,
+      "cumulative": 14
+     },
+     {
+      "level": 14,
+      "value": 230.1,
+      "cost": 1,
+      "cumulative": 15
+     }
+    ],
+    "rate": [
+     {
+      "level": 1,
+      "value": 172.5,
+      "cost": 6,
+      "cumulative": 6
+     },
+     {
+      "level": 2,
+      "value": 205.8,
+      "cost": 5,
+      "cumulative": 11
+     },
+     {
+      "level": 3,
+      "value": 229.7,
+      "cost": 4,
+      "cumulative": 15
+     },
+     {
+      "level": 4,
+      "value": 246.8,
+      "cost": 3,
+      "cumulative": 18
+     },
+     {
+      "level": 5,
+      "value": 259.0,
+      "cost": 2,
+      "cumulative": 20
+     },
+     {
+      "level": 6,
+      "value": 267.8,
+      "cost": 2,
+      "cumulative": 22
+     },
+     {
+      "level": 7,
+      "value": 274.1,
+      "cost": 1,
+      "cumulative": 23
+     },
+     {
+      "level": 8,
+      "value": 278.6,
+      "cost": 1,
+      "cumulative": 24
+     },
+     {
+      "level": 9,
+      "value": 281.8,
+      "cost": 1,
+      "cumulative": 25
+     },
+     {
+      "level": 10,
+      "value": 284.1,
+      "cost": 1,
+      "cumulative": 26
+     },
+     {
+      "level": 11,
+      "value": 285.8,
+      "cost": 1,
+      "cumulative": 27
+     },
+     {
+      "level": 12,
+      "value": 287.0,
+      "cost": 1,
+      "cumulative": 28
+     },
+     {
+      "level": 13,
+      "value": 287.8,
+      "cost": 1,
+      "cumulative": 29
+     },
+     {
+      "level": 14,
+      "value": 288.5,
+      "cost": 1,
+      "cumulative": 30
+     }
+    ]
+   }
+  },
+  "foxfire": {
+   "label": "Foxfire Lantern",
+   "colour": "green",
+   "build_cost": 17,
+   "base": {
+    "damage": 21,
+    "range": 104,
+    "rate": 68
+   },
+   "base_power": 22.16,
+   "cost_per_base_power": 0.767,
+   "caps": {
+    "range": 340,
+    "rate": 196
+   },
+   "phi": 1.78,
+   "bloom_price_per_power": 1.1,
+   "cost_coefficient": 17.01,
+   "bloom_cost": 2456,
+   "power_at_bloom": 2232.9,
+   "ladders": {
+    "damage": [
+     {
+      "level": 1,
+      "value": 37.4,
+      "cost": 13,
+      "cumulative": 13
+     },
+     {
+      "level": 2,
+      "value": 66.5,
+      "cost": 25,
+      "cumulative": 38
+     },
+     {
+      "level": 3,
+      "value": 118.4,
+      "cost": 48,
+      "cumulative": 86
+     },
+     {
+      "level": 4,
+      "value": 210.8,
+      "cost": 90,
+      "cumulative": 176
+     },
+     {
+      "level": 5,
+      "value": 375.2,
+      "cost": 171,
+      "cumulative": 347
+     },
+     {
+      "level": 6,
+      "value": 667.9,
+      "cost": 325,
+      "cumulative": 672
+     },
+     {
+      "level": 7,
+      "value": 1188.9,
+      "cost": 616,
+      "cumulative": 1288
+     },
+     {
+      "level": 8,
+      "value": 2116.3,
+      "cost": 1168,
+      "cumulative": 2456
+     },
+     {
+      "level": 9,
+      "value": 3767.0,
+      "cost": 2213,
+      "cumulative": 4669
+     },
+     {
+      "level": 10,
+      "value": 6705.3,
+      "cost": 4196,
+      "cumulative": 8865
+     },
+     {
+      "level": 11,
+      "value": 11935.5,
+      "cost": 7954,
+      "cumulative": 16819
+     },
+     {
+      "level": 12,
+      "value": 21245.1,
+      "cost": 15078,
+      "cumulative": 31897
+     },
+     {
+      "level": 13,
+      "value": 37816.3,
+      "cost": 28583,
+      "cumulative": 60480
+     },
+     {
+      "level": 14,
+      "value": 67313.1,
+      "cost": 54185,
+      "cumulative": 114665
+     }
+    ],
+    "range": [
+     {
+      "level": 1,
+      "value": 150.1,
+      "cost": 3,
+      "cumulative": 3
+     },
+     {
+      "level": 2,
+      "value": 187.2,
+      "cost": 3,
+      "cumulative": 6
+     },
+     {
+      "level": 3,
+      "value": 217.1,
+      "cost": 2,
+      "cumulative": 8
+     },
+     {
+      "level": 4,
+      "value": 241.1,
+      "cost": 2,
+      "cumulative": 10
+     },
+     {
+      "level": 5,
+      "value": 260.4,
+      "cost": 1,
+      "cumulative": 11
+     },
+     {
+      "level": 6,
+      "value": 276.0,
+      "cost": 1,
+      "cumulative": 12
+     },
+     {
+      "level": 7,
+      "value": 288.5,
+      "cost": 1,
+      "cumulative": 13
+     },
+     {
+      "level": 8,
+      "value": 298.5,
+      "cost": 1,
+      "cumulative": 14
+     },
+     {
+      "level": 9,
+      "value": 306.6,
+      "cost": 1,
+      "cumulative": 15
+     },
+     {
+      "level": 10,
+      "value": 313.2,
+      "cost": 1,
+      "cumulative": 16
+     },
+     {
+      "level": 11,
+      "value": 318.4,
+      "cost": 1,
+      "cumulative": 17
+     },
+     {
+      "level": 12,
+      "value": 322.6,
+      "cost": 1,
+      "cumulative": 18
+     },
+     {
+      "level": 13,
+      "value": 326.0,
+      "cost": 1,
+      "cumulative": 19
+     },
+     {
+      "level": 14,
+      "value": 328.8,
+      "cost": 1,
+      "cumulative": 20
+     }
+    ],
+    "rate": [
+     {
+      "level": 1,
+      "value": 97.6,
+      "cost": 7,
+      "cumulative": 7
+     },
+     {
+      "level": 2,
+      "value": 120.4,
+      "cost": 6,
+      "cumulative": 13
+     },
+     {
+      "level": 3,
+      "value": 137.9,
+      "cost": 5,
+      "cumulative": 18
+     },
+     {
+      "level": 4,
+      "value": 151.3,
+      "cost": 4,
+      "cumulative": 22
+     },
+     {
+      "level": 5,
+      "value": 161.7,
+      "cost": 3,
+      "cumulative": 25
+     },
+     {
+      "level": 6,
+      "value": 169.6,
+      "cost": 3,
+      "cumulative": 28
+     },
+     {
+      "level": 7,
+      "value": 175.7,
+      "cost": 2,
+      "cumulative": 30
+     },
+     {
+      "level": 8,
+      "value": 180.4,
+      "cost": 2,
+      "cumulative": 32
+     },
+     {
+      "level": 9,
+      "value": 184.0,
+      "cost": 1,
+      "cumulative": 33
+     },
+     {
+      "level": 10,
+      "value": 186.8,
+      "cost": 1,
+      "cumulative": 34
+     },
+     {
+      "level": 11,
+      "value": 188.9,
+      "cost": 1,
+      "cumulative": 35
+     },
+     {
+      "level": 12,
+      "value": 190.6,
+      "cost": 1,
+      "cumulative": 36
+     },
+     {
+      "level": 13,
+      "value": 191.8,
+      "cost": 1,
+      "cumulative": 37
+     },
+     {
+      "level": 14,
+      "value": 192.8,
+      "cost": 1,
+      "cumulative": 38
+     }
+    ]
+   }
+  },
+  "artillery": {
+   "label": "Artillery Cap",
+   "colour": "crimson",
+   "build_cost": 26,
+   "base": {
+    "damage": 58,
+    "range": 196,
+    "rate": 44
+   },
+   "base_power": 54.36,
+   "cost_per_base_power": 0.478,
+   "caps": {
+    "range": 372,
+    "rate": 152
+   },
+   "phi": 1.84,
+   "bloom_price_per_power": 1.55,
+   "cost_coefficient": 58.43,
+   "bloom_cost": 11069,
+   "power_at_bloom": 7141.8,
+   "ladders": {
+    "damage": [
+     {
+      "level": 1,
+      "value": 106.7,
+      "cost": 49,
+      "cumulative": 49
+     },
+     {
+      "level": 2,
+      "value": 196.4,
+      "cost": 96,
+      "cumulative": 145
+     },
+     {
+      "level": 3,
+      "value": 361.3,
+      "cost": 188,
+      "cumulative": 333
+     },
+     {
+      "level": 4,
+      "value": 664.8,
+      "cost": 369,
+      "cumulative": 702
+     },
+     {
+      "level": 5,
+      "value": 1223.3,
+      "cost": 724,
+      "cumulative": 1426
+     },
+     {
+      "level": 6,
+      "value": 2250.8,
+      "cost": 1418,
+      "cumulative": 2844
+     },
+     {
+      "level": 7,
+      "value": 4141.5,
+      "cost": 2779,
+      "cumulative": 5623
+     },
+     {
+      "level": 8,
+      "value": 7620.3,
+      "cost": 5446,
+      "cumulative": 11069
+     },
+     {
+      "level": 9,
+      "value": 14021.3,
+      "cost": 10672,
+      "cumulative": 21741
+     },
+     {
+      "level": 10,
+      "value": 25799.2,
+      "cost": 20912,
+      "cumulative": 42653
+     },
+     {
+      "level": 11,
+      "value": 47470.5,
+      "cost": 40980,
+      "cumulative": 83633
+     },
+     {
+      "level": 12,
+      "value": 87345.8,
+      "cost": 80304,
+      "cumulative": 163937
+     },
+     {
+      "level": 13,
+      "value": 160716.2,
+      "cost": 157363,
+      "cumulative": 321300
+     },
+     {
+      "level": 14,
+      "value": 295717.8,
+      "cost": 308369,
+      "cumulative": 629669
+     }
+    ],
+    "range": [
+     {
+      "level": 1,
+      "value": 234.9,
+      "cost": 6,
+      "cumulative": 6
+     },
+     {
+      "level": 2,
+      "value": 265.3,
+      "cost": 4,
+      "cumulative": 10
+     },
+     {
+      "level": 3,
+      "value": 288.9,
+      "cost": 3,
+      "cumulative": 13
+     },
+     {
+      "level": 4,
+      "value": 307.3,
+      "cost": 3,
+      "cumulative": 16
+     },
+     {
+      "level": 5,
+      "value": 321.6,
+      "cost": 2,
+      "cumulative": 18
+     },
+     {
+      "level": 6,
+      "value": 332.7,
+      "cost": 2,
+      "cumulative": 20
+     },
+     {
+      "level": 7,
+      "value": 341.4,
+      "cost": 1,
+      "cumulative": 21
+     },
+     {
+      "level": 8,
+      "value": 348.2,
+      "cost": 1,
+      "cumulative": 22
+     },
+     {
+      "level": 9,
+      "value": 353.4,
+      "cost": 1,
+      "cumulative": 23
+     },
+     {
+      "level": 10,
+      "value": 357.6,
+      "cost": 1,
+      "cumulative": 24
+     },
+     {
+      "level": 11,
+      "value": 360.7,
+      "cost": 1,
+      "cumulative": 25
+     },
+     {
+      "level": 12,
+      "value": 363.2,
+      "cost": 1,
+      "cumulative": 26
+     },
+     {
+      "level": 13,
+      "value": 365.2,
+      "cost": 1,
+      "cumulative": 27
+     },
+     {
+      "level": 14,
+      "value": 366.7,
+      "cost": 1,
+      "cumulative": 28
+     }
+    ],
+    "rate": [
+     {
+      "level": 1,
+      "value": 71.5,
+      "cost": 37,
+      "cumulative": 37
+     },
+     {
+      "level": 2,
+      "value": 92.0,
+      "cost": 29,
+      "cumulative": 66
+     },
+     {
+      "level": 3,
+      "value": 107.3,
+      "cost": 23,
+      "cumulative": 89
+     },
+     {
+      "level": 4,
+      "value": 118.7,
+      "cost": 18,
+      "cumulative": 107
+     },
+     {
+      "level": 5,
+      "value": 127.2,
+      "cost": 14,
+      "cumulative": 121
+     },
+     {
+      "level": 6,
+      "value": 133.5,
+      "cost": 12,
+      "cumulative": 133
+     },
+     {
+      "level": 7,
+      "value": 138.2,
+      "cost": 9,
+      "cumulative": 142
+     },
+     {
+      "level": 8,
+      "value": 141.7,
+      "cost": 7,
+      "cumulative": 149
+     },
+     {
+      "level": 9,
+      "value": 144.3,
+      "cost": 6,
+      "cumulative": 155
+     },
+     {
+      "level": 10,
+      "value": 146.3,
+      "cost": 5,
+      "cumulative": 160
+     },
+     {
+      "level": 11,
+      "value": 147.8,
+      "cost": 4,
+      "cumulative": 164
+     },
+     {
+      "level": 12,
+      "value": 148.8,
+      "cost": 3,
+      "cumulative": 167
+     },
+     {
+      "level": 13,
+      "value": 149.6,
+      "cost": 2,
+      "cumulative": 169
+     },
+     {
+      "level": 14,
+      "value": 150.2,
+      "cost": 2,
+      "cumulative": 171
+     }
+    ]
+   }
+  },
+  "cordyceps": {
+   "label": "Cordyceps Spire",
+   "colour": "amber",
+   "build_cost": 40,
+   "base": {
+    "damage": 34,
+    "range": 76,
+    "rate": 62
+   },
+   "base_power": 27.96,
+   "cost_per_base_power": 1.431,
+   "caps": {
+    "range": 178,
+    "rate": 184
+   },
+   "phi": 1.72,
+   "bloom_price_per_power": 1.75,
+   "cost_coefficient": 34.43,
+   "bloom_cost": 3746,
+   "power_at_bloom": 2141.7,
+   "ladders": {
+    "damage": [
+     {
+      "level": 1,
+      "value": 58.5,
+      "cost": 25,
+      "cumulative": 25
+     },
+     {
+      "level": 2,
+      "value": 100.6,
+      "cost": 45,
+      "cumulative": 70
+     },
+     {
+      "level": 3,
+      "value": 173.0,
+      "cost": 83,
+      "cumulative": 153
+     },
+     {
+      "level": 4,
+      "value": 297.6,
+      "cost": 152,
+      "cumulative": 305
+     },
+     {
+      "level": 5,
+      "value": 511.8,
+      "cost": 279,
+      "cumulative": 584
+     },
+     {
+      "level": 6,
+      "value": 880.3,
+      "cost": 511,
+      "cumulative": 1095
+     },
+     {
+      "level": 7,
+      "value": 1514.2,
+      "cost": 936,
+      "cumulative": 2031
+     },
+     {
+      "level": 8,
+      "value": 2604.4,
+      "cost": 1715,
+      "cumulative": 3746
+     },
+     {
+      "level": 9,
+      "value": 4479.6,
+      "cost": 3142,
+      "cumulative": 6888
+     },
+     {
+      "level": 10,
+      "value": 7704.8,
+      "cost": 5756,
+      "cumulative": 12644
+     },
+     {
+      "level": 11,
+      "value": 13252.3,
+      "cost": 10544,
+      "cumulative": 23188
+     },
+     {
+      "level": 12,
+      "value": 22794.0,
+      "cost": 19315,
+      "cumulative": 42503
+     },
+     {
+      "level": 13,
+      "value": 39205.7,
+      "cost": 35381,
+      "cumulative": 77884
+     },
+     {
+      "level": 14,
+      "value": 67433.7,
+      "cost": 64811,
+      "cumulative": 142695
+     }
+    ],
+    "range": [
+     {
+      "level": 1,
+      "value": 104.9,
+      "cost": 6,
+      "cumulative": 6
+     },
+     {
+      "level": 2,
+      "value": 125.6,
+      "cost": 4,
+      "cumulative": 10
+     },
+     {
+      "level": 3,
+      "value": 140.5,
+      "cost": 3,
+      "cumulative": 13
+     },
+     {
+      "level": 4,
+      "value": 151.1,
+      "cost": 2,
+      "cumulative": 15
+     },
+     {
+      "level": 5,
+      "value": 158.7,
+      "cost": 2,
+      "cumulative": 17
+     },
+     {
+      "level": 6,
+      "value": 164.2,
+      "cost": 1,
+      "cumulative": 18
+     },
+     {
+      "level": 7,
+      "value": 168.1,
+      "cost": 1,
+      "cumulative": 19
+     },
+     {
+      "level": 8,
+      "value": 170.9,
+      "cost": 1,
+      "cumulative": 20
+     },
+     {
+      "level": 9,
+      "value": 172.9,
+      "cost": 1,
+      "cumulative": 21
+     },
+     {
+      "level": 10,
+      "value": 174.4,
+      "cost": 1,
+      "cumulative": 22
+     },
+     {
+      "level": 11,
+      "value": 175.4,
+      "cost": 1,
+      "cumulative": 23
+     },
+     {
+      "level": 12,
+      "value": 176.1,
+      "cost": 1,
+      "cumulative": 24
+     },
+     {
+      "level": 13,
+      "value": 176.7,
+      "cost": 1,
+      "cumulative": 25
+     },
+     {
+      "level": 14,
+      "value": 177.0,
+      "cost": 1,
+      "cumulative": 26
+     }
+    ],
+    "rate": [
+     {
+      "level": 1,
+      "value": 94.7,
+      "cost": 18,
+      "cumulative": 18
+     },
+     {
+      "level": 2,
+      "value": 118.7,
+      "cost": 14,
+      "cumulative": 32
+     },
+     {
+      "level": 3,
+      "value": 136.2,
+      "cost": 11,
+      "cumulative": 43
+     },
+     {
+      "level": 4,
+      "value": 149.0,
+      "cost": 9,
+      "cumulative": 52
+     },
+     {
+      "level": 5,
+      "value": 158.4,
+      "cost": 7,
+      "cumulative": 59
+     },
+     {
+      "level": 6,
+      "value": 165.3,
+      "cost": 5,
+      "cumulative": 64
+     },
+     {
+      "level": 7,
+      "value": 170.3,
+      "cost": 4,
+      "cumulative": 68
+     },
+     {
+      "level": 8,
+      "value": 174.0,
+      "cost": 3,
+      "cumulative": 71
+     },
+     {
+      "level": 9,
+      "value": 176.7,
+      "cost": 2,
+      "cumulative": 73
+     },
+     {
+      "level": 10,
+      "value": 178.6,
+      "cost": 2,
+      "cumulative": 75
+     },
+     {
+      "level": 11,
+      "value": 180.1,
+      "cost": 1,
+      "cumulative": 76
+     },
+     {
+      "level": 12,
+      "value": 181.1,
+      "cost": 1,
+      "cumulative": 77
+     },
+     {
+      "level": 13,
+      "value": 181.9,
+      "cost": 1,
+      "cumulative": 78
+     },
+     {
+      "level": 14,
+      "value": 182.5,
+      "cost": 1,
+      "cumulative": 79
+     }
+    ]
+   }
+  }
+ },
+ "difficulties": {
+  "sprout": {
+   "label": "Sprout",
+   "params": {
+    "label": "Sprout",
+    "g0": 1.215,
+    "g_inf": 1.022,
+    "tau": 52,
+    "rho": 0.075,
+    "speed": 58,
+    "sigma": 1.052,
+    "start_cash": 52
+   },
+   "samples": [
+    {
+     "wave": 1,
+     "hp": 14.6,
+     "bounty": 1.09,
+     "wave_income": 10.94,
+     "growth": 1.215
+    },
+    {
+     "wave": 5,
+     "hp": 30.8,
+     "bounty": 2.31,
+     "wave_income": 23.13,
+     "growth": 1.2007
+    },
+    {
+     "wave": 10,
+     "hp": 73.8,
+     "bounty": 5.54,
+     "wave_income": 55.37,
+     "growth": 1.1843
+    },
+    {
+     "wave": 20,
+     "hp": 349.5,
+     "bounty": 26.22,
+     "wave_income": 262.15,
+     "growth": 1.1559
+    },
+    {
+     "wave": 30,
+     "hp": 1326.3,
+     "bounty": 99.47,
+     "wave_income": 994.69,
+     "growth": 1.1325
+    },
+    {
+     "wave": 50,
+     "hp": 11246.2,
+     "bounty": 843.47,
+     "wave_income": 8434.68,
+     "growth": 1.0972
+    },
+    {
+     "wave": 75,
+     "hp": 79029.2,
+     "bounty": 5927.19,
+     "wave_income": 59271.9,
+     "growth": 1.0685
+    },
+    {
+     "wave": 100,
+     "hp": 327828.2,
+     "bounty": 24587.12,
+     "wave_income": 245871.15,
+     "growth": 1.0508
+    },
+    {
+     "wave": 150,
+     "hp": 2361757.5,
+     "bounty": 177131.81,
+     "wave_income": 1771318.11,
+     "growth": 1.033
+    },
+    {
+     "wave": 200,
+     "hp": 9859427.9,
+     "bounty": 739457.09,
+     "wave_income": 7394570.95,
+     "growth": 1.0262
+    }
+   ]
+  },
+  "bloom": {
+   "label": "Bloom",
+   "params": {
+    "label": "Bloom",
+    "g0": 1.255,
+    "g_inf": 1.03,
+    "tau": 46,
+    "rho": 0.062,
+    "speed": 62,
+    "sigma": 1.065,
+    "start_cash": 44
+   },
+   "samples": [
+    {
+     "wave": 1,
+     "hp": 15.1,
+     "bounty": 0.93,
+     "wave_income": 9.34,
+     "growth": 1.255
+    },
+    {
+     "wave": 5,
+     "hp": 36.0,
+     "bounty": 2.23,
+     "wave_income": 22.3,
+     "growth": 1.2363
+    },
+    {
+     "wave": 10,
+     "hp": 98.5,
+     "bounty": 6.11,
+     "wave_income": 61.09,
+     "growth": 1.215
+    },
+    {
+     "wave": 20,
+     "hp": 582.5,
+     "bounty": 36.11,
+     "wave_income": 361.13,
+     "growth": 1.1789
+    },
+    {
+     "wave": 30,
+     "hp": 2621.3,
+     "bounty": 162.52,
+     "wave_income": 1625.22,
+     "growth": 1.1498
+    },
+    {
+     "wave": 50,
+     "hp": 28148.9,
+     "bounty": 1745.23,
+     "wave_income": 17452.32,
+     "growth": 1.1075
+    },
+    {
+     "wave": 75,
+     "hp": 237974.6,
+     "bounty": 14754.43,
+     "wave_income": 147544.27,
+     "growth": 1.075
+    },
+    {
+     "wave": 100,
+     "hp": 1131519.6,
+     "bounty": 70154.22,
+     "wave_income": 701542.18,
+     "growth": 1.0562
+    },
+    {
+     "wave": 150,
+     "hp": 10599832.9,
+     "bounty": 657189.64,
+     "wave_income": 6571896.42,
+     "growth": 1.0388
+    },
+    {
+     "wave": 200,
+     "hp": 60115757.3,
+     "bounty": 3727176.96,
+     "wave_income": 37271769.56,
+     "growth": 1.033
+    }
+   ]
+  },
+  "spread": {
+   "label": "Spread",
+   "params": {
+    "label": "Spread",
+    "g0": 1.3,
+    "g_inf": 1.041,
+    "tau": 40,
+    "rho": 0.052,
+    "speed": 76,
+    "sigma": 1.078,
+    "start_cash": 38
+   },
+   "samples": [
+    {
+     "wave": 1,
+     "hp": 15.6,
+     "bounty": 0.81,
+     "wave_income": 8.11,
+     "growth": 1.3
+    },
+    {
+     "wave": 5,
+     "hp": 42.5,
+     "bounty": 2.21,
+     "wave_income": 22.08,
+     "growth": 1.2754
+    },
+    {
+     "wave": 10,
+     "hp": 134.0,
+     "bounty": 6.97,
+     "wave_income": 69.7,
+     "growth": 1.2478
+    },
+    {
+     "wave": 20,
+     "hp": 992.4,
+     "bounty": 51.6,
+     "wave_income": 516.03,
+     "growth": 1.2021
+    },
+    {
+     "wave": 30,
+     "hp": 5269.0,
+     "bounty": 273.99,
+     "wave_income": 2739.87,
+     "growth": 1.1664
+    },
+    {
+     "wave": 50,
+     "hp": 70406.6,
+     "bounty": 3661.14,
+     "wave_income": 36611.44,
+     "growth": 1.1171
+    },
+    {
+     "wave": 75,
+     "hp": 709638.2,
+     "bounty": 36901.19,
+     "wave_income": 369011.89,
+     "growth": 1.0817
+    },
+    {
+     "wave": 100,
+     "hp": 3932547.6,
+     "bounty": 204492.48,
+     "wave_income": 2044924.76,
+     "growth": 1.0628
+    },
+    {
+     "wave": 150,
+     "hp": 52702635.5,
+     "bounty": 2740537.05,
+     "wave_income": 27405370.46,
+     "growth": 1.0472
+    },
+    {
+     "wave": 200,
+     "hp": 465225298.4,
+     "bounty": 24191715.52,
+     "wave_income": 241917155.18,
+     "growth": 1.0428
+    }
+   ]
+  },
+  "dominion": {
+   "label": "Dominion",
+   "params": {
+    "label": "Dominion",
+    "g0": 1.345,
+    "g_inf": 1.058,
+    "tau": 34,
+    "rho": 0.044,
+    "speed": 82,
+    "sigma": 1.092,
+    "start_cash": 32
+   },
+   "samples": [
+    {
+     "wave": 1,
+     "hp": 16.1,
+     "bounty": 0.71,
+     "wave_income": 7.1,
+     "growth": 1.345
+    },
+    {
+     "wave": 5,
+     "hp": 49.7,
+     "bounty": 2.19,
+     "wave_income": 21.87,
+     "growth": 1.3131
+    },
+    {
+     "wave": 10,
+     "hp": 178.8,
+     "bounty": 7.87,
+     "wave_income": 78.67,
+     "growth": 1.2783
+    },
+    {
+     "wave": 20,
+     "hp": 1611.7,
+     "bounty": 70.92,
+     "wave_income": 709.17,
+     "growth": 1.2221
+    },
+    {
+     "wave": 30,
+     "hp": 9819.0,
+     "bounty": 432.04,
+     "wave_income": 4320.36,
+     "growth": 1.1803
+    },
+    {
+     "wave": 50,
+     "hp": 157947.8,
+     "bounty": 6949.7,
+     "wave_income": 69497.03,
+     "growth": 1.1259
+    },
+    {
+     "wave": 75,
+     "hp": 1931640.2,
+     "bounty": 84992.17,
+     "wave_income": 849921.68,
+     "growth": 1.0906
+    },
+    {
+     "wave": 100,
+     "hp": 13446347.6,
+     "bounty": 591639.29,
+     "wave_income": 5916392.93,
+     "growth": 1.0736
+    },
+    {
+     "wave": 150,
+     "hp": 329204174.8,
+     "bounty": 14484983.69,
+     "wave_income": 144849836.89,
+     "growth": 1.0616
+    },
+    {
+     "wave": 200,
+     "hp": 6021389517.9,
+     "bounty": 264941138.79,
+     "wave_income": 2649411387.88,
+     "growth": 1.0588
+    }
+   ]
+  }
+ },
+ "modifiers": [
+  {
+   "name": "Hyphal Relay",
+   "cost": 7062,
+   "damage_mult": 0.0,
+   "range_mult": 0.0,
+   "rate_mult": 0.0,
+   "range_added": 96,
+   "combo_mult": 1.0
+  },
+  {
+   "name": "Nutrient Bed",
+   "cost": 24544,
+   "damage_mult": 0.45,
+   "range_mult": 0.0,
+   "rate_mult": 0.0,
+   "range_added": 0,
+   "combo_mult": 1.0
+  },
+  {
+   "name": "Enzyme Gland",
+   "cost": 59997,
+   "damage_mult": 0.0,
+   "range_mult": 0.0,
+   "rate_mult": 1.1,
+   "range_added": 0,
+   "combo_mult": 1.0
+  },
+  {
+   "name": "Amatoxin Vat",
+   "cost": 57270,
+   "damage_mult": 1.05,
+   "range_mult": 0.0,
+   "rate_mult": 0.0,
+   "range_added": 0,
+   "combo_mult": 1.0
+  },
+  {
+   "name": "Fermentation Vent",
+   "cost": 20879,
+   "damage_mult": -0.38,
+   "range_mult": -0.12,
+   "rate_mult": 0.66,
+   "range_added": 0,
+   "combo_mult": 0.92
+  },
+  {
+   "name": "Rhizomorph Runner",
+   "cost": 4292,
+   "damage_mult": 0.0,
+   "range_mult": 0.0,
+   "rate_mult": -0.22,
+   "range_added": 94,
+   "combo_mult": 0.94
+  },
+  {
+   "name": "Amatoxin Still",
+   "cost": 37798,
+   "damage_mult": 1.05,
+   "range_mult": -0.28,
+   "rate_mult": -0.28,
+   "range_added": 0,
+   "combo_mult": 0.85
+  }
+ ],
+ "combos": [
+  {
+   "key": "sporeshell",
+   "lead": "cyan",
+   "requires": {
+    "crimson": 1
+   },
+   "specificity": 1,
+   "yield": 3.4,
+   "recharge_ms": 5000
+  },
+  {
+   "key": "paralytic_sporeshell",
+   "lead": "cyan",
+   "requires": {
+    "crimson": 1,
+    "amber": 1
+   },
+   "specificity": 2,
+   "yield": 3.1,
+   "recharge_ms": 5000
+  },
+  {
+   "key": "lumen_sporeshell",
+   "lead": "cyan",
+   "requires": {
+    "crimson": 1,
+    "green": 1
+   },
+   "specificity": 2,
+   "yield": 4.2,
+   "recharge_ms": 10000
+  },
+  {
+   "key": "heavy_sporeshell",
+   "lead": "cyan",
+   "requires": {
+    "crimson": 2
+   },
+   "specificity": 2,
+   "yield": 4.6,
+   "recharge_ms": 6200
+  },
+  {
+   "key": "heavy_lumen_sporeshell",
+   "lead": "cyan",
+   "requires": {
+    "crimson": 2,
+    "green": 1
+   },
+   "specificity": 3,
+   "yield": 5.5,
+   "recharge_ms": 11400
+  },
+  {
+   "key": "sclerotium",
+   "lead": "cyan",
+   "requires": {
+    "cyan": 1
+   },
+   "specificity": 1,
+   "yield": 5.8,
+   "recharge_ms": 7000
+  },
+  {
+   "key": "deep_sclerotium",
+   "lead": "cyan",
+   "requires": {
+    "cyan": 1,
+    "crimson": 1
+   },
+   "specificity": 2,
+   "yield": 7.6,
+   "recharge_ms": 7000
+  },
+  {
+   "key": "paralytic_sclerotium",
+   "lead": "cyan",
+   "requires": {
+    "cyan": 1,
+    "amber": 1
+   },
+   "specificity": 2,
+   "yield": 6.9,
+   "recharge_ms": 7000
+  },
+  {
+   "key": "sporeshell_sclerotium",
+   "lead": "cyan",
+   "requires": {
+    "cyan": 1,
+    "crimson": 2
+   },
+   "specificity": 3,
+   "yield": 8.4,
+   "recharge_ms": 8000
+  },
+  {
+   "key": "lumen_sporeshell_scler",
+   "lead": "cyan",
+   "requires": {
+    "cyan": 1,
+    "crimson": 2,
+    "green": 1
+   },
+   "specificity": 4,
+   "yield": 10.2,
+   "recharge_ms": 10800
+  },
+  {
+   "key": "bloom_cannon",
+   "lead": "green",
+   "requires": {
+    "crimson": 1,
+    "cyan": 1
+   },
+   "specificity": 2,
+   "yield": 6.2,
+   "recharge_ms": 9000
+  },
+  {
+   "key": "heavy_bloom_cannon",
+   "lead": "green",
+   "requires": {
+    "crimson": 2,
+    "cyan": 1
+   },
+   "specificity": 3,
+   "yield": 8.1,
+   "recharge_ms": 9000
+  },
+  {
+   "key": "lumen_packet",
+   "lead": "crimson",
+   "requires": {
+    "green": 1
+   },
+   "specificity": 1,
+   "yield": 2.2,
+   "recharge_ms": 3000
+  },
+  {
+   "key": "paralytic_packet",
+   "lead": "crimson",
+   "requires": {
+    "amber": 1
+   },
+   "specificity": 1,
+   "yield": 2.4,
+   "recharge_ms": 3000
+  },
+  {
+   "key": "cordyceps_cloud",
+   "lead": "crimson",
+   "requires": {
+    "green": 1,
+    "cyan": 1
+   },
+   "specificity": 2,
+   "yield": 1.1,
+   "recharge_ms": 5000
+  },
+  {
+   "key": "enzymatic_burn",
+   "lead": "crimson",
+   "requires": {
+    "crimson": 1,
+    "amber": 1,
+    "cyan": 1
+   },
+   "specificity": 3,
+   "yield": 4.4,
+   "recharge_ms": 6500
+  },
+  {
+   "key": "fruiting_detonation",
+   "lead": "crimson",
+   "requires": {
+    "cyan": 2
+   },
+   "specificity": 2,
+   "yield": 12.5,
+   "recharge_ms": 7400
+  },
+  {
+   "key": "paralytic_bloom_cannon",
+   "lead": "amber",
+   "requires": {
+    "crimson": 1,
+    "cyan": 1
+   },
+   "specificity": 2,
+   "yield": 6.2,
+   "recharge_ms": 9000
+  },
+  {
+   "key": "spore_shockwave",
+   "lead": "amber",
+   "requires": {
+    "amber": 1,
+    "cyan": 1,
+    "green": 1
+   },
+   "specificity": 3,
+   "yield": 3.0,
+   "recharge_ms": 9000
+  },
+  {
+   "key": "mycelial_sinkhole",
+   "lead": "amber",
+   "requires": {
+    "amber": 2,
+    "green": 1
+   },
+   "specificity": 3,
+   "yield": 0.0,
+   "recharge_ms": 20000
+  }
+ ],
+ "combo_dispatch_rule": "Among combos whose lead == firing tower colour and whose every requirement is met by surrounding combo-capable towers (EXCLUDING the firing tower), select max by (specificity, yield)."
+}

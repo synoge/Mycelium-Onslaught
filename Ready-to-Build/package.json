@@ -1,0 +1,26 @@
+{
+  "name": "mycelium-onslaught",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "lint:constants": "tsx verify/lint-constants.ts",
+    "verify:parity": "tsx verify/parity.ts",
+    "verify:determinism": "tsx verify/determinism.ts",
+    "verify:combos": "tsx verify/combos.ts",
+    "verify:stacking": "tsx verify/stacking.ts",
+    "verify:economy": "tsx verify/economy.ts",
+    "verify:maps": "tsx verify/maps.ts",
+    "verify": "tsx verify/run-all.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11",
+    "vitest": "^1.6.0",
+    "tsx": "^4.10.5"
+  }
+}
