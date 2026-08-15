@@ -44,6 +44,23 @@ export class CodexUI {
     this.containerEl.querySelector('#btn-close-codex')?.addEventListener('click', () => {
       this.containerEl.style.display = 'none';
     });
+
+    // Backdrop click to close
+    this.containerEl.addEventListener?.('click', (e) => {
+      if (e.target === this.containerEl) {
+        this.containerEl.style.display = 'none';
+      }
+    });
+
+    // Global ESC key to close
+    if (typeof window !== 'undefined' && !((window as any).__codexKeybound)) {
+      (window as any).__codexKeybound = true;
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.containerEl.style.display !== 'none') {
+          this.containerEl.style.display = 'none';
+        }
+      });
+    }
   }
 
   private getTabStyle(tab: string): string {

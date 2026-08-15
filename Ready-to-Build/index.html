@@ -31,6 +31,7 @@
       align-items: center;
       padding: 8px 16px;
       gap: 6px;
+      position: relative;
     }
     #hud-top {
       width: 100%;
@@ -161,7 +162,7 @@
     .hud-btn:active {
       transform: translateY(0);
     }
-    #shell-overlay, #codex-overlay {
+    #shell-overlay {
       position: absolute;
       top: 0;
       left: 0;
@@ -171,6 +172,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    #codex-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(5, 8, 12, 0.85);
+      backdrop-filter: blur(12px);
     }
   </style>
 </head>
@@ -193,10 +206,10 @@
       <div id="canvas-inner">
         <canvas id="game-canvas" width="720" height="480"></canvas>
         <div id="shell-overlay"></div>
-        <div id="codex-overlay" style="display: none;"></div>
       </div>
     </div>
     <div id="hud-bottom"></div>
+    <div id="codex-overlay" style="display: none;"></div>
   </div>
   <script type="module" src="/src/main.ts"></script>
 </body>
