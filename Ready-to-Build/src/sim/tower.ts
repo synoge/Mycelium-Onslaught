@@ -79,6 +79,13 @@ export class Tower {
 
   // Total investment tracking for economy resale (ENGINE-SPEC §8)
   public totalSpent: number;
+  public placedTimeMs: number = 0;
+  public hasFired: boolean = false;
+
+  // Live Combat Telemetry (MVP Stat Tracker)
+  public totalDamageDealt: number = 0;
+  public totalKills: number = 0;
+  public hasteBuffMult: number = 1.0;
 
   private loader: BalanceLoader;
 
@@ -123,7 +130,7 @@ export class Tower {
   }
 
   public getEffectiveRate(): number {
-    let base = this.getBaseStat('rate');
+    let base = this.getBaseStat('rate') * this.hasteBuffMult;
     let mult = this.multRate;
     if (this.freakoutActive) {
       // Freak-out 4x rate (ENGINE-SPEC §7.3)

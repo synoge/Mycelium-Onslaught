@@ -58,9 +58,14 @@ export class EconomyManager {
     return cost;
   }
 
-  public sellTower(tower: Tower): number {
-    // ENGINE-SPEC §8: floor(total_spent * resale)
-    const resaleAmount = Math.floor(tower.totalSpent * this.loader.constants.resale);
+  public sellTower(tower: Tower, simTimeMs?: number): number {
+    // 3-Second Misclick Undo Buffer: 100% refund if sold within 3s without firing
+    // non-balance: 3000ms undo window
+    const isUndo = simTimeMs !== undefined && (simTimeMs - tower.placedTimeMs) <= 3000 && !tower.hasFired;
+    const resaleAmount = isUndo
+      ? tower.totalSpent
+      : Math.floor(tower.totalSpent * this.loader.constants.resale);
+
     this.award(resaleAmount);
     return resaleAmount;
   }

@@ -2,19 +2,45 @@ import { BalanceLoader } from '../balance/loader';
 import { PRNG } from '../core/prng';
 import { distance } from '../map/map';
 import { Attacker } from './attacker';
-import { ComboManager } from './combos';
+import { ComboExecutionResult, ComboManager } from './combos';
 import { Projectile } from './projectile';
 import { Tower } from './tower';
+
+export interface CausticPuddle {
+  id: number;
+  x: number;
+  y: number;
+  radius: number;
+  damagePerTick: number;
+  durationMs: number;
+  maxDurationMs: number;
+}
+
+export interface CombatEvents {
+  onLaserFired?: (source: Tower, target: Attacker, damage: number, chainHops: { x: number; y: number }[]) => void;
+  onComboFired?: (comboResult: ComboExecutionResult, target: Attacker) => void;
+  onProjectileLaunched?: (proj: Projectile) => void;
+  onProjectileImpacted?: (x: number, y: number, splashRadius: number) => void;
+  onAttackerKilled?: (attacker: Attacker) => void;
+  onCausticPuddleSpawned?: (puddle: CausticPuddle) => void;
+  onNeuralArcFired?: (source: Tower, chainTargets: { x: number; y: number }[], damage: number) => void;
+  onKineticLeechFired?: (source: Tower, target: Attacker, bonusGold: number) => void;
+}
 
 export class CombatManager {
   public towers: Tower[] = [];
   public projectiles: Projectile[] = [];
+  public causticPuddles: CausticPuddle[] = [];
   public comboManager: ComboManager;
+  public events: CombatEvents = {};
+  public onBountyAwarded?: (bounty: number) => void;
   private loader: BalanceLoader;
   private prng: PRNG;
   private nextProjectileId: number = 1;
+  private nextPuddleId: number = 1;
   public totalDamageDealt: number = 0;
   public totalBountyEarned: number = 0;
+  public totalKills: number = 0;
 
   constructor(loader: BalanceLoader, prng: PRNG) {
     this.loader = loader;
@@ -47,14 +73,17 @@ export class CombatManager {
   /**
    * Evaluates recursive Foxfire laser chain per ENGINE-SPEC §7.1.
    */
-  public executeLaserChain(source: Tower, target: Attacker): number {
+  public executeLaserChain(source: Tower, target: Attacker): { totalDamage: number; chainHops: { x: number; y: number }[] } {
     // Reset all claim marks
     for (const t of this.towers) {
       t.claimedThisShot = false;
     }
 
+    const hops: { x: number; y: number }[] = [];
+
     const recursiveLink = (current: Tower): number => {
       current.claimedThisShot = true;
+      hops.push({ x: current.x, y: current.y });
       let dmg = current.getEffectiveDamage();
 
       // Find unclaimed Foxfire towers in range
@@ -75,11 +104,12 @@ export class CombatManager {
       return dmg;
     };
 
-    return recursiveLink(source);
+    const totalDamage = recursiveLink(source);
+    return { totalDamage, chainHops: hops };
   }
 
   /**
-   * Ticks tower logic on the 70ms fixed interval.
+   * Ticks tower combat logic on the 70ms fixed interval.
    */
   public updateTowerLogic(deltaMs: number, attackers: Attacker[], simTimeMs: number): void {
     // non-balance: freakout unlock level threshold from ENGINE-SPEC §7.3
@@ -87,7 +117,26 @@ export class CombatManager {
     // non-balance: holding pattern unlock level threshold from ENGINE-SPEC §7.2
     const holdingPatternLevelThreshold = 3;
 
-    // 1. Update recharge timers and Freak-out states
+    // 0. Update Polypore Haste Auras on adjacent allies
+    for (const t of this.towers) {
+      t.hasteBuffMult = 1.0;
+    }
+    for (const poly of this.towers) {
+      if (poly.familyKey === 'polypore') {
+        const polyRange = poly.getEffectiveRange();
+        for (const ally of this.towers) {
+          if (ally.id !== poly.id) {
+            const d = distance({ x: poly.x, y: poly.y }, { x: ally.x, y: ally.y });
+            if (d <= polyRange) {
+              // non-balance: +20% fire-rate buff from Polypore Bio-Shield
+              ally.hasteBuffMult = Math.max(ally.hasteBuffMult, 1.2);
+            }
+          }
+        }
+      }
+    }
+
+    // 1. Update recharge timers, freak-out states, and persistent auras
     for (const tower of this.towers) {
       if (tower.rechargeTimerMs > 0) {
         tower.rechargeTimerMs -= deltaMs;
@@ -96,7 +145,7 @@ export class CombatManager {
         tower.comboRechargeTimerMs -= deltaMs;
       }
 
-      // Freak-out logic (Puffball / Cordyceps dmg>=4 and rate>=4)
+      // Freak-out logic (Puffball / Cordyceps)
       if (
         (tower.familyKey === 'puffball' || tower.familyKey === 'cordyceps') &&
         tower.levels.damage >= freakoutLevelThreshold &&
@@ -111,8 +160,6 @@ export class CombatManager {
           tower.freakoutTimerMs -= deltaMs;
           if (tower.freakoutTimerMs <= 0) {
             tower.freakoutActive = false;
-            // Schedule next freakout: now + space/2 + rand(0, space/2) - rate_level * rate_mult * 1000
-            // space = 80000 ms, rate_mult = 4 (ENGINE-SPEC §7.3)
             // non-balance: space / 2 = 40000 ms
             const spaceHalf = 40000;
             const randPart = this.prng.nextFloat(0, spaceHalf);
@@ -129,7 +176,7 @@ export class CombatManager {
         }
       }
 
-      // Holding pattern logic (Artillery range>=3 & rate>=3)
+      // Holding pattern logic (Artillery)
       if (
         tower.familyKey === 'artillery' &&
         tower.levels.range >= holdingPatternLevelThreshold &&
@@ -142,11 +189,56 @@ export class CombatManager {
           tower.rechargeTimerMs += tower.getFireIntervalMs();
         }
       }
+
+      // Stinkhorn Miasma 360° Continuous Gas Cloud
+      if (tower.familyKey === 'stinkhorn') {
+        const gasRange = tower.getEffectiveRange();
+        // non-balance: stinkhorn tick damage fraction
+        const tickDmg = (tower.getEffectiveDamage() * deltaMs) / 1000;
+        for (const atk of attackers) {
+          if (!atk.isDead && !atk.reachedBase) {
+            const d = distance({ x: tower.x, y: tower.y }, { x: atk.x, y: atk.y });
+            if (d <= gasRange) {
+              // non-balance: 0.05 armor shred per second
+              atk.applyArmorShred((0.05 * deltaMs) / 1000);
+              const actualDmg = Math.min(atk.energy, tickDmg);
+              const killed = atk.takeDamage(actualDmg);
+              this.totalDamageDealt += actualDmg;
+              tower.totalDamageDealt += actualDmg;
+              if (killed) {
+                this.totalBountyEarned += atk.bounty;
+                this.totalKills++;
+                tower.totalKills++;
+                if (this.onBountyAwarded) this.onBountyAwarded(atk.bounty);
+                if (this.events.onAttackerKilled) this.events.onAttackerKilled(atk);
+              }
+            }
+          }
+        }
+      }
+
+      // Polypore Forcefield Barrier Slow Field
+      if (tower.familyKey === 'polypore') {
+        const fieldRange = tower.getEffectiveRange();
+        for (const atk of attackers) {
+          if (!atk.isDead && !atk.reachedBase) {
+            const d = distance({ x: tower.x, y: tower.y }, { x: atk.x, y: atk.y });
+            if (d <= fieldRange) {
+              // non-balance: 1.35 slow factor divisor
+              atk.applyPoison(1.35);
+            }
+          }
+        }
+      }
     }
 
-    // 2. Target acquisition and firing
+    // 2. Target acquisition and active projectile/beam firing
     for (const tower of this.towers) {
-      // Check if ready to fire
+      if (tower.familyKey === 'stinkhorn' || tower.familyKey === 'polypore') {
+        // These passive aura towers pulse continuously above
+        continue;
+      }
+
       const isArtilleryHolding = tower.familyKey === 'artillery' && tower.orbitingProjectiles > 0;
       if (tower.rechargeTimerMs > 0 && !isArtilleryHolding) {
         continue;
@@ -155,64 +247,168 @@ export class CombatManager {
       const target = tower.acquireTarget(attackers);
       if (!target) continue;
 
+      tower.hasFired = true;
+
       // Check combo eligibility & dispatch
       const comboResult = this.comboManager.evaluateAndDispatch(tower, this.towers);
-
       if (comboResult) {
-        // Fire combo
+        if (this.events.onComboFired) {
+          this.events.onComboFired(comboResult, target);
+        }
+
         if (comboResult.combo.key === 'mycelial_sinkhole') {
-          // Sinkhole: removes attackers in 70px radius with 0 bounty (ENGINE-SPEC §6.3)
           // non-balance: sinkhole radius in logical pixels
           const sinkholeRadius = 70;
           for (const atk of attackers) {
             if (!atk.isDead && !atk.reachedBase) {
               const d = distance({ x: tower.x, y: tower.y }, { x: atk.x, y: atk.y });
               if (d <= sinkholeRadius) {
-                atk.isDead = true; // Removed without bounty
+                atk.isDead = true;
+                tower.totalKills++;
               }
             }
           }
         } else {
-          // Launch combo projectile with massive payload
-          this.projectiles.push(
-            new Projectile({
-              id: this.nextProjectileId++,
-              sourceTowerId: tower.id,
-              startX: tower.x,
-              startY: tower.y,
-              targetAttacker: target,
-              damage: comboResult.payload,
-              // non-balance: combo projectile visual splash radius
-              splashRadius: 50,
-            })
-          );
+          const proj = new Projectile({
+            id: this.nextProjectileId++,
+            sourceTowerId: tower.id,
+            startX: tower.x,
+            startY: tower.y,
+            targetAttacker: target,
+            damage: comboResult.payload,
+            // non-balance: combo projectile visual splash radius
+            splashRadius: 50,
+          });
+          this.projectiles.push(proj);
+          if (this.events.onProjectileLaunched) this.events.onProjectileLaunched(proj);
         }
         tower.rechargeTimerMs = tower.getFireIntervalMs();
         continue;
       }
 
-      // Normal shot or Signature weapon firing
+      // Specialized Tower Weapons
       if (tower.familyKey === 'foxfire') {
         // Laser chain
-        const chainDamage = this.executeLaserChain(tower, target);
-        // Lasers hit instantaneously or via beam
-        const actualDmg = Math.min(target.energy, chainDamage);
+        const { totalDamage, chainHops } = this.executeLaserChain(tower, target);
+        const actualDmg = Math.min(target.energy, totalDamage);
         const killed = target.takeDamage(actualDmg);
         this.totalDamageDealt += actualDmg;
-        if (killed) this.totalBountyEarned += target.bounty;
+        tower.totalDamageDealt += actualDmg;
+
+        if (this.events.onLaserFired) this.events.onLaserFired(tower, target, actualDmg, chainHops);
+        if (killed) {
+          this.totalBountyEarned += target.bounty;
+          this.totalKills++;
+          tower.totalKills++;
+          if (this.onBountyAwarded) this.onBountyAwarded(target.bounty);
+          if (this.events.onAttackerKilled) this.events.onAttackerKilled(target);
+        }
+        tower.rechargeTimerMs = tower.getFireIntervalMs();
+      } else if (tower.familyKey === 'ghost_pipe') {
+        // Kinetic Siphon: Drain speed & award bonus gold dividend
+        // non-balance: 1.5 kinetic drain divisor
+        target.applyPoison(1.5);
+        // non-balance: 0.35 kinetic gold bonus ratio
+        const goldDividend = target.bounty * 0.35;
+        const actualDmg = Math.min(target.energy, tower.getEffectiveDamage());
+        const killed = target.takeDamage(actualDmg);
+        this.totalDamageDealt += actualDmg;
+        tower.totalDamageDealt += actualDmg;
+
+        if (this.events.onKineticLeechFired) this.events.onKineticLeechFired(tower, target, goldDividend);
+        if (this.onBountyAwarded && goldDividend > 0) this.onBountyAwarded(goldDividend);
+        this.totalBountyEarned += goldDividend;
+
+        if (killed) {
+          this.totalBountyEarned += target.bounty;
+          this.totalKills++;
+          tower.totalKills++;
+          if (this.onBountyAwarded) this.onBountyAwarded(target.bounty);
+          if (this.events.onAttackerKilled) this.events.onAttackerKilled(target);
+        }
+        tower.rechargeTimerMs = tower.getFireIntervalMs();
+      } else if (tower.familyKey === 'lions_mane') {
+        // Neural Synapse Chain Lightning: Jump up to 3 nearby enemies + Stun & Path Reversal
+        const chainTargets: Attacker[] = [target];
+        // non-balance: max 3 chain targets
+        const maxChain = 3;
+        // non-balance: chain jump radius 90px
+        const chainRadius = 90;
+        for (const candidate of attackers) {
+          if (chainTargets.length >= maxChain) break;
+          if (!candidate.isDead && !candidate.reachedBase && !chainTargets.includes(candidate)) {
+            const lastTarget = chainTargets[chainTargets.length - 1];
+            const d = distance({ x: lastTarget.x, y: lastTarget.y }, { x: candidate.x, y: candidate.y });
+            if (d <= chainRadius) {
+              chainTargets.push(candidate);
+            }
+          }
+        }
+
+        const dmgPerTarget = tower.getEffectiveDamage();
+        for (const hit of chainTargets) {
+          // non-balance: 800ms stun duration
+          hit.applyStun(800);
+          // non-balance: 1000ms reversal stagger duration
+          hit.applyPathReversal(1000);
+          const actualDmg = Math.min(hit.energy, dmgPerTarget);
+          const killed = hit.takeDamage(actualDmg);
+          this.totalDamageDealt += actualDmg;
+          tower.totalDamageDealt += actualDmg;
+          if (killed) {
+            this.totalBountyEarned += hit.bounty;
+            this.totalKills++;
+            tower.totalKills++;
+            if (this.onBountyAwarded) this.onBountyAwarded(hit.bounty);
+            if (this.events.onAttackerKilled) this.events.onAttackerKilled(hit);
+          }
+        }
+
+        if (this.events.onNeuralArcFired) {
+          this.events.onNeuralArcFired(
+            tower,
+            chainTargets.map((c) => ({ x: c.x, y: c.y })),
+            dmgPerTarget
+          );
+        }
+        tower.rechargeTimerMs = tower.getFireIntervalMs();
+      } else if (tower.familyKey === 'inky_cap') {
+        // Void-Mortar: Launch shell that leaves persistent caustic puddle on impact
+        const proj = new Projectile({
+          id: this.nextProjectileId++,
+          sourceTowerId: tower.id,
+          startX: tower.x,
+          startY: tower.y,
+          targetAttacker: target,
+          damage: tower.getEffectiveDamage(),
+          // non-balance: inky cap splash radius 35
+          splashRadius: 35,
+        });
+        this.projectiles.push(proj);
+        if (this.events.onProjectileLaunched) this.events.onProjectileLaunched(proj);
         tower.rechargeTimerMs = tower.getFireIntervalMs();
       } else if (isArtilleryHolding) {
-        // Holding pattern: immediate strike without launch delay
+        // Holding pattern instant launch
         tower.orbitingProjectiles--;
         const actualDmg = Math.min(target.energy, tower.getEffectiveDamage());
         const killed = target.takeDamage(actualDmg);
         this.totalDamageDealt += actualDmg;
-        if (killed) this.totalBountyEarned += target.bounty;
+        tower.totalDamageDealt += actualDmg;
+
+        // non-balance: holding strike visual splash radius
+        const holdingRadius = 25;
+        if (this.events.onProjectileImpacted) this.events.onProjectileImpacted(target.x, target.y, holdingRadius);
+        if (killed) {
+          this.totalBountyEarned += target.bounty;
+          this.totalKills++;
+          tower.totalKills++;
+          if (this.onBountyAwarded) this.onBountyAwarded(target.bounty);
+          if (this.events.onAttackerKilled) this.events.onAttackerKilled(target);
+        }
       } else {
-        // Cordyceps slow poison calculation (§7.4)
+        // Puffball and Cordyceps standard projectiles
         let poisonDivisor = 1;
         if (tower.familyKey === 'cordyceps') {
-          // poison_max = 10, divisor = max(1, poison_max * damage_upgrade_percent / 100)
           // non-balance: 10 poison_max constant from ENGINE-SPEC §7.4
           const poisonMax = 10;
           // non-balance: percentage ratio conversion
@@ -221,18 +417,49 @@ export class CombatManager {
           poisonDivisor = Math.max(1, (poisonMax * damageUpgradePercent) / 100);
         }
 
-        this.projectiles.push(
-          new Projectile({
-            id: this.nextProjectileId++,
-            sourceTowerId: tower.id,
-            startX: tower.x,
-            startY: tower.y,
-            targetAttacker: target,
-            damage: tower.getEffectiveDamage(),
-            poisonDivisor,
-          })
-        );
+        const proj = new Projectile({
+          id: this.nextProjectileId++,
+          sourceTowerId: tower.id,
+          startX: tower.x,
+          startY: tower.y,
+          targetAttacker: target,
+          damage: tower.getEffectiveDamage(),
+          poisonDivisor,
+        });
+        this.projectiles.push(proj);
+        if (this.events.onProjectileLaunched) this.events.onProjectileLaunched(proj);
         tower.rechargeTimerMs = tower.getFireIntervalMs();
+      }
+    }
+
+    // 3. Update Caustic Puddles (Inky Cap Ground Denial)
+    for (let i = this.causticPuddles.length - 1; i >= 0; i--) {
+      const puddle = this.causticPuddles[i];
+      puddle.durationMs -= deltaMs;
+      if (puddle.durationMs <= 0) {
+        this.causticPuddles.splice(i, 1);
+        continue;
+      }
+
+      // Deal DoT & Armor Shred to enemies inside puddle
+      const tickDmg = (puddle.damagePerTick * deltaMs) / 1000;
+      for (const atk of attackers) {
+        if (!atk.isDead && !atk.reachedBase) {
+          const d = distance({ x: puddle.x, y: puddle.y }, { x: atk.x, y: atk.y });
+          if (d <= puddle.radius) {
+            // non-balance: 0.15 armor shred per second
+            atk.applyArmorShred((0.15 * deltaMs) / 1000);
+            const actualDmg = Math.min(atk.energy, tickDmg);
+            const killed = atk.takeDamage(actualDmg);
+            this.totalDamageDealt += actualDmg;
+            if (killed) {
+              this.totalBountyEarned += atk.bounty;
+              this.totalKills++;
+              if (this.onBountyAwarded) this.onBountyAwarded(atk.bounty);
+              if (this.events.onAttackerKilled) this.events.onAttackerKilled(atk);
+            }
+          }
+        }
       }
     }
   }
@@ -247,8 +474,39 @@ export class CombatManager {
 
       if (result.impacted) {
         this.totalDamageDealt += result.damageDealt;
+
+        const srcTower = this.towers.find((t) => t.id === proj.sourceTowerId);
+        if (srcTower) {
+          srcTower.totalDamageDealt += result.damageDealt;
+          srcTower.totalKills += result.killedAttackers.length;
+
+          // Inky Cap Spawns Caustic Puddle on Impact
+          if (srcTower.familyKey === 'inky_cap') {
+            // non-balance: puddle radius 35
+            const puddleRadius = 35;
+            // non-balance: 4000ms puddle duration
+            const puddle: CausticPuddle = {
+              id: this.nextPuddleId++,
+              x: proj.x,
+              y: proj.y,
+              radius: puddleRadius,
+              damagePerTick: srcTower.getEffectiveDamage() * 0.4,
+              durationMs: 4000,
+              maxDurationMs: 4000,
+            };
+            this.causticPuddles.push(puddle);
+            if (this.events.onCausticPuddleSpawned) this.events.onCausticPuddleSpawned(puddle);
+          }
+        }
+
+        if (this.events.onProjectileImpacted) {
+          this.events.onProjectileImpacted(proj.x, proj.y, proj.splashRadius);
+        }
         for (const killed of result.killedAttackers) {
           this.totalBountyEarned += killed.bounty;
+          this.totalKills++;
+          if (this.onBountyAwarded) this.onBountyAwarded(killed.bounty);
+          if (this.events.onAttackerKilled) this.events.onAttackerKilled(killed);
         }
         this.projectiles.splice(i, 1);
       }

@@ -58,7 +58,7 @@ for (const diff of difficulties) {
 
 console.log('\n--- Running Parity Harness: Cost & Stat Curves (Levels 1-20) ---');
 
-const families: FamilyKey[] = ['puffball', 'foxfire', 'artillery', 'cordyceps'];
+const families: FamilyKey[] = ['puffball', 'foxfire', 'artillery', 'cordyceps', 'inky_cap', 'polypore', 'stinkhorn', 'ghost_pipe', 'lions_mane'];
 const tracks: StatTrack[] = ['damage', 'range', 'rate'];
 
 for (const fam of families) {

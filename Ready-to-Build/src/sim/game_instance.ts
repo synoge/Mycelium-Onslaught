@@ -48,6 +48,11 @@ export class GameInstance {
     this.combatManager = new CombatManager(this.loader, this.prng);
     this.modifierManager = new ModifierManager();
     this.economyManager = new EconomyManager(this.loader, difficulty);
+
+    // Auto-award bounties earned from kills
+    this.combatManager.onBountyAwarded = (bounty: number) => {
+      this.economyManager.award(bounty);
+    };
   }
 
   public step(deltaMs: number): void {
@@ -92,6 +97,7 @@ export class GameInstance {
 
     this.economyManager.buyTower(familyKey);
     const tower = new Tower(this.nextStructureId++, familyKey, x, y, this.loader);
+    tower.placedTimeMs = this.simTimeMs;
     this.combatManager.addTower(tower);
     this.modifierManager.registerTower(tower);
     return tower;
@@ -127,7 +133,7 @@ export class GameInstance {
   }
 
   public sellTower(tower: Tower): void {
-    this.economyManager.sellTower(tower);
+    this.economyManager.sellTower(tower, this.simTimeMs);
     this.combatManager.removeTower(tower.id);
     this.modifierManager.unregisterTower(tower.id);
     if (this.selectedTower?.id === tower.id) {

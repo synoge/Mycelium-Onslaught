@@ -1,5 +1,5 @@
-export type FamilyKey = 'puffball' | 'foxfire' | 'artillery' | 'cordyceps';
-export type FamilyColour = 'cyan' | 'green' | 'crimson' | 'amber';
+export type FamilyKey = 'puffball' | 'foxfire' | 'artillery' | 'cordyceps' | 'inky_cap' | 'polypore' | 'stinkhorn' | 'ghost_pipe' | 'lions_mane';
+export type FamilyColour = 'cyan' | 'green' | 'crimson' | 'amber' | 'violet' | 'teal' | 'coral' | 'silver' | 'azure';
 export type StatTrack = 'damage' | 'range' | 'rate';
 export type DifficultyKey = 'sprout' | 'bloom' | 'spread' | 'dominion';
 

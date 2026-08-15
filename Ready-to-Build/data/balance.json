@@ -1142,6 +1142,1411 @@
      }
     ]
    }
+  },
+  "inky_cap": {
+   "label": "Inky Cap Mortar",
+   "colour": "violet",
+   "build_cost": 32,
+   "base": {
+    "damage": 28,
+    "range": 130,
+    "rate": 52
+   },
+   "base_power": 25.26,
+   "cost_per_base_power": 1.267,
+   "caps": {
+    "range": 260,
+    "rate": 140
+   },
+   "phi": 1.76,
+   "bloom_price_per_power": 1.4,
+   "cost_coefficient": 24.74,
+   "bloom_cost": 3256,
+   "power_at_bloom": 2325.4,
+   "ladders": {
+    "damage": [
+     {
+      "level": 1,
+      "value": 49.3,
+      "cost": 19,
+      "cumulative": 19
+     },
+     {
+      "level": 2,
+      "value": 86.7,
+      "cost": 35,
+      "cumulative": 54
+     },
+     {
+      "level": 3,
+      "value": 152.6,
+      "cost": 66,
+      "cumulative": 120
+     },
+     {
+      "level": 4,
+      "value": 268.7,
+      "cost": 124,
+      "cumulative": 244
+     },
+     {
+      "level": 5,
+      "value": 472.8,
+      "cost": 232,
+      "cumulative": 476
+     },
+     {
+      "level": 6,
+      "value": 832.2,
+      "cost": 435,
+      "cumulative": 911
+     },
+     {
+      "level": 7,
+      "value": 1464.7,
+      "cost": 816,
+      "cumulative": 1727
+     },
+     {
+      "level": 8,
+      "value": 2577.9,
+      "cost": 1529,
+      "cumulative": 3256
+     },
+     {
+      "level": 9,
+      "value": 4537.0,
+      "cost": 2865,
+      "cumulative": 6121
+     },
+     {
+      "level": 10,
+      "value": 7985.2,
+      "cost": 5371,
+      "cumulative": 11492
+     },
+     {
+      "level": 11,
+      "value": 14053.9,
+      "cost": 10067,
+      "cumulative": 21559
+     },
+     {
+      "level": 12,
+      "value": 24734.9,
+      "cost": 18870,
+      "cumulative": 40429
+     },
+     {
+      "level": 13,
+      "value": 43533.4,
+      "cost": 35370,
+      "cumulative": 75799
+     },
+     {
+      "level": 14,
+      "value": 76618.8,
+      "cost": 66298,
+      "cumulative": 142097
+     }
+    ],
+    "range": [
+     {
+      "level": 1,
+      "value": 161.5,
+      "cost": 3,
+      "cumulative": 3
+     },
+     {
+      "level": 2,
+      "value": 185.4,
+      "cost": 2,
+      "cumulative": 5
+     },
+     {
+      "level": 3,
+      "value": 203.5,
+      "cost": 2,
+      "cumulative": 7
+     },
+     {
+      "level": 4,
+      "value": 217.2,
+      "cost": 1,
+      "cumulative": 8
+     },
+     {
+      "level": 5,
+      "value": 227.6,
+      "cost": 1,
+      "cumulative": 9
+     },
+     {
+      "level": 6,
+      "value": 235.4,
+      "cost": 1,
+      "cumulative": 10
+     },
+     {
+      "level": 7,
+      "value": 241.4,
+      "cost": 1,
+      "cumulative": 11
+     },
+     {
+      "level": 8,
+      "value": 245.9,
+      "cost": 1,
+      "cumulative": 12
+     },
+     {
+      "level": 9,
+      "value": 249.3,
+      "cost": 1,
+      "cumulative": 13
+     },
+     {
+      "level": 10,
+      "value": 251.9,
+      "cost": 1,
+      "cumulative": 14
+     },
+     {
+      "level": 11,
+      "value": 253.9,
+      "cost": 1,
+      "cumulative": 15
+     },
+     {
+      "level": 12,
+      "value": 255.4,
+      "cost": 1,
+      "cumulative": 16
+     },
+     {
+      "level": 13,
+      "value": 256.5,
+      "cost": 1,
+      "cumulative": 17
+     },
+     {
+      "level": 14,
+      "value": 257.3,
+      "cost": 1,
+      "cumulative": 18
+     }
+    ],
+    "rate": [
+     {
+      "level": 1,
+      "value": 75.6,
+      "cost": 11,
+      "cumulative": 11
+     },
+     {
+      "level": 2,
+      "value": 92.9,
+      "cost": 9,
+      "cumulative": 20
+     },
+     {
+      "level": 3,
+      "value": 105.5,
+      "cost": 7,
+      "cumulative": 27
+     },
+     {
+      "level": 4,
+      "value": 114.8,
+      "cost": 5,
+      "cumulative": 32
+     },
+     {
+      "level": 5,
+      "value": 121.6,
+      "cost": 4,
+      "cumulative": 36
+     },
+     {
+      "level": 6,
+      "value": 126.5,
+      "cost": 3,
+      "cumulative": 39
+     },
+     {
+      "level": 7,
+      "value": 130.1,
+      "cost": 3,
+      "cumulative": 42
+     },
+     {
+      "level": 8,
+      "value": 132.8,
+      "cost": 2,
+      "cumulative": 44
+     },
+     {
+      "level": 9,
+      "value": 134.7,
+      "cost": 2,
+      "cumulative": 46
+     },
+     {
+      "level": 10,
+      "value": 136.1,
+      "cost": 1,
+      "cumulative": 47
+     },
+     {
+      "level": 11,
+      "value": 137.2,
+      "cost": 1,
+      "cumulative": 48
+     },
+     {
+      "level": 12,
+      "value": 137.9,
+      "cost": 1,
+      "cumulative": 49
+     },
+     {
+      "level": 13,
+      "value": 138.5,
+      "cost": 1,
+      "cumulative": 50
+     },
+     {
+      "level": 14,
+      "value": 138.9,
+      "cost": 1,
+      "cumulative": 51
+     }
+    ]
+   }
+  },
+  "polypore": {
+   "label": "Polypore Shield",
+   "colour": "teal",
+   "build_cost": 45,
+   "base": {
+    "damage": 16,
+    "range": 110,
+    "rate": 80
+   },
+   "base_power": 20.43,
+   "cost_per_base_power": 2.203,
+   "caps": {
+    "range": 220,
+    "rate": 200
+   },
+   "phi": 1.73,
+   "bloom_price_per_power": 1.65,
+   "cost_coefficient": 23.68,
+   "bloom_cost": 2704,
+   "power_at_bloom": 1638.8,
+   "ladders": {
+    "damage": [
+     {
+      "level": 1,
+      "value": 27.7,
+      "cost": 17,
+      "cumulative": 17
+     },
+     {
+      "level": 2,
+      "value": 47.9,
+      "cost": 32,
+      "cumulative": 49
+     },
+     {
+      "level": 3,
+      "value": 82.8,
+      "cost": 59,
+      "cumulative": 108
+     },
+     {
+      "level": 4,
+      "value": 143.3,
+      "cost": 108,
+      "cumulative": 216
+     },
+     {
+      "level": 5,
+      "value": 247.9,
+      "cost": 199,
+      "cumulative": 415
+     },
+     {
+      "level": 6,
+      "value": 428.9,
+      "cost": 367,
+      "cumulative": 782
+     },
+     {
+      "level": 7,
+      "value": 742.1,
+      "cost": 676,
+      "cumulative": 1458
+     },
+     {
+      "level": 8,
+      "value": 1283.8,
+      "cost": 1246,
+      "cumulative": 2704
+     },
+     {
+      "level": 9,
+      "value": 2220.9,
+      "cost": 2295,
+      "cumulative": 4999
+     },
+     {
+      "level": 10,
+      "value": 3842.2,
+      "cost": 4229,
+      "cumulative": 9228
+     },
+     {
+      "level": 11,
+      "value": 6647.0,
+      "cost": 7792,
+      "cumulative": 17020
+     },
+     {
+      "level": 12,
+      "value": 11499.3,
+      "cost": 14356,
+      "cumulative": 31376
+     },
+     {
+      "level": 13,
+      "value": 19893.9,
+      "cost": 26450,
+      "cumulative": 57826
+     },
+     {
+      "level": 14,
+      "value": 34416.4,
+      "cost": 48733,
+      "cumulative": 106559
+     }
+    ],
+    "range": [
+     {
+      "level": 1,
+      "value": 139.5,
+      "cost": 3,
+      "cumulative": 3
+     },
+     {
+      "level": 2,
+      "value": 161.1,
+      "cost": 2,
+      "cumulative": 5
+     },
+     {
+      "level": 3,
+      "value": 176.9,
+      "cost": 2,
+      "cumulative": 7
+     },
+     {
+      "level": 4,
+      "value": 188.5,
+      "cost": 1,
+      "cumulative": 8
+     },
+     {
+      "level": 5,
+      "value": 196.9,
+      "cost": 1,
+      "cumulative": 9
+     },
+     {
+      "level": 6,
+      "value": 203.1,
+      "cost": 1,
+      "cumulative": 10
+     },
+     {
+      "level": 7,
+      "value": 207.7,
+      "cost": 1,
+      "cumulative": 11
+     },
+     {
+      "level": 8,
+      "value": 211.0,
+      "cost": 1,
+      "cumulative": 12
+     },
+     {
+      "level": 9,
+      "value": 213.4,
+      "cost": 1,
+      "cumulative": 13
+     },
+     {
+      "level": 10,
+      "value": 215.2,
+      "cost": 1,
+      "cumulative": 14
+     },
+     {
+      "level": 11,
+      "value": 216.5,
+      "cost": 1,
+      "cumulative": 15
+     },
+     {
+      "level": 12,
+      "value": 217.4,
+      "cost": 1,
+      "cumulative": 16
+     },
+     {
+      "level": 13,
+      "value": 218.1,
+      "cost": 1,
+      "cumulative": 17
+     },
+     {
+      "level": 14,
+      "value": 218.6,
+      "cost": 1,
+      "cumulative": 18
+     }
+    ],
+    "rate": [
+     {
+      "level": 1,
+      "value": 109.8,
+      "cost": 9,
+      "cumulative": 9
+     },
+     {
+      "level": 2,
+      "value": 132.2,
+      "cost": 7,
+      "cumulative": 16
+     },
+     {
+      "level": 3,
+      "value": 149.1,
+      "cost": 6,
+      "cumulative": 22
+     },
+     {
+      "level": 4,
+      "value": 161.7,
+      "cost": 5,
+      "cumulative": 27
+     },
+     {
+      "level": 5,
+      "value": 171.2,
+      "cost": 4,
+      "cumulative": 31
+     },
+     {
+      "level": 6,
+      "value": 178.4,
+      "cost": 3,
+      "cumulative": 34
+     },
+     {
+      "level": 7,
+      "value": 183.8,
+      "cost": 2,
+      "cumulative": 36
+     },
+     {
+      "level": 8,
+      "value": 187.8,
+      "cost": 2,
+      "cumulative": 38
+     },
+     {
+      "level": 9,
+      "value": 190.8,
+      "cost": 1,
+      "cumulative": 39
+     },
+     {
+      "level": 10,
+      "value": 193.1,
+      "cost": 1,
+      "cumulative": 40
+     },
+     {
+      "level": 11,
+      "value": 194.8,
+      "cost": 1,
+      "cumulative": 41
+     },
+     {
+      "level": 12,
+      "value": 196.1,
+      "cost": 1,
+      "cumulative": 42
+     },
+     {
+      "level": 13,
+      "value": 197.1,
+      "cost": 1,
+      "cumulative": 43
+     },
+     {
+      "level": 14,
+      "value": 197.8,
+      "cost": 1,
+      "cumulative": 44
+     }
+    ]
+   }
+  },
+  "stinkhorn": {
+   "label": "Lattice Stinkhorn",
+   "colour": "coral",
+   "build_cost": 28,
+   "base": {
+    "damage": 20,
+    "range": 95,
+    "rate": 90
+   },
+   "base_power": 26.69,
+   "cost_per_base_power": 1.049,
+   "caps": {
+    "range": 190,
+    "rate": 220
+   },
+   "phi": 1.75,
+   "bloom_price_per_power": 1.35,
+   "cost_coefficient": 25.25,
+   "bloom_cost": 3170,
+   "power_at_bloom": 2348.0,
+   "ladders": {
+    "damage": [
+     {
+      "level": 1,
+      "value": 35.0,
+      "cost": 19,
+      "cumulative": 19
+     },
+     {
+      "level": 2,
+      "value": 61.2,
+      "cost": 35,
+      "cumulative": 54
+     },
+     {
+      "level": 3,
+      "value": 107.2,
+      "cost": 66,
+      "cumulative": 120
+     },
+     {
+      "level": 4,
+      "value": 187.6,
+      "cost": 123,
+      "cumulative": 243
+     },
+     {
+      "level": 5,
+      "value": 328.3,
+      "cost": 228,
+      "cumulative": 471
+     },
+     {
+      "level": 6,
+      "value": 574.5,
+      "cost": 426,
+      "cumulative": 897
+     },
+     {
+      "level": 7,
+      "value": 1005.3,
+      "cost": 794,
+      "cumulative": 1691
+     },
+     {
+      "level": 8,
+      "value": 1759.3,
+      "cost": 1479,
+      "cumulative": 3170
+     },
+     {
+      "level": 9,
+      "value": 3078.7,
+      "cost": 2757,
+      "cumulative": 5927
+     },
+     {
+      "level": 10,
+      "value": 5387.8,
+      "cost": 5138,
+      "cumulative": 11065
+     },
+     {
+      "level": 11,
+      "value": 9428.6,
+      "cost": 9576,
+      "cumulative": 20641
+     },
+     {
+      "level": 12,
+      "value": 16500.1,
+      "cost": 17847,
+      "cumulative": 38488
+     },
+     {
+      "level": 13,
+      "value": 28875.2,
+      "cost": 33263,
+      "cumulative": 71751
+     },
+     {
+      "level": 14,
+      "value": 50531.6,
+      "cost": 61994,
+      "cumulative": 133745
+     }
+    ],
+    "range": [
+     {
+      "level": 1,
+      "value": 121.9,
+      "cost": 3,
+      "cumulative": 3
+     },
+     {
+      "level": 2,
+      "value": 141.2,
+      "cost": 2,
+      "cumulative": 5
+     },
+     {
+      "level": 3,
+      "value": 155.1,
+      "cost": 2,
+      "cumulative": 7
+     },
+     {
+      "level": 4,
+      "value": 165.0,
+      "cost": 1,
+      "cumulative": 8
+     },
+     {
+      "level": 5,
+      "value": 172.1,
+      "cost": 1,
+      "cumulative": 9
+     },
+     {
+      "level": 6,
+      "value": 177.1,
+      "cost": 1,
+      "cumulative": 10
+     },
+     {
+      "level": 7,
+      "value": 180.8,
+      "cost": 1,
+      "cumulative": 11
+     },
+     {
+      "level": 8,
+      "value": 183.4,
+      "cost": 1,
+      "cumulative": 12
+     },
+     {
+      "level": 9,
+      "value": 185.3,
+      "cost": 1,
+      "cumulative": 13
+     },
+     {
+      "level": 10,
+      "value": 186.6,
+      "cost": 1,
+      "cumulative": 14
+     },
+     {
+      "level": 11,
+      "value": 187.6,
+      "cost": 1,
+      "cumulative": 15
+     },
+     {
+      "level": 12,
+      "value": 188.3,
+      "cost": 1,
+      "cumulative": 16
+     },
+     {
+      "level": 13,
+      "value": 188.8,
+      "cost": 1,
+      "cumulative": 17
+     },
+     {
+      "level": 14,
+      "value": 189.1,
+      "cost": 1,
+      "cumulative": 18
+     }
+    ],
+    "rate": [
+     {
+      "level": 1,
+      "value": 121.5,
+      "cost": 9,
+      "cumulative": 9
+     },
+     {
+      "level": 2,
+      "value": 145.4,
+      "cost": 7,
+      "cumulative": 16
+     },
+     {
+      "level": 3,
+      "value": 163.5,
+      "cost": 6,
+      "cumulative": 22
+     },
+     {
+      "level": 4,
+      "value": 177.2,
+      "cost": 5,
+      "cumulative": 27
+     },
+     {
+      "level": 5,
+      "value": 187.6,
+      "cost": 4,
+      "cumulative": 31
+     },
+     {
+      "level": 6,
+      "value": 195.4,
+      "cost": 3,
+      "cumulative": 34
+     },
+     {
+      "level": 7,
+      "value": 201.4,
+      "cost": 2,
+      "cumulative": 36
+     },
+     {
+      "level": 8,
+      "value": 205.9,
+      "cost": 2,
+      "cumulative": 38
+     },
+     {
+      "level": 9,
+      "value": 209.3,
+      "cost": 2,
+      "cumulative": 40
+     },
+     {
+      "level": 10,
+      "value": 211.9,
+      "cost": 1,
+      "cumulative": 41
+     },
+     {
+      "level": 11,
+      "value": 213.9,
+      "cost": 1,
+      "cumulative": 42
+     },
+     {
+      "level": 12,
+      "value": 215.4,
+      "cost": 1,
+      "cumulative": 43
+     },
+     {
+      "level": 13,
+      "value": 216.5,
+      "cost": 1,
+      "cumulative": 44
+     },
+     {
+      "level": 14,
+      "value": 217.3,
+      "cost": 1,
+      "cumulative": 45
+     }
+    ]
+   }
+  },
+  "ghost_pipe": {
+   "label": "Ghost Pipe Leech",
+   "colour": "silver",
+   "build_cost": 36,
+   "base": {
+    "damage": 24,
+    "range": 125,
+    "rate": 60
+   },
+   "base_power": 24.49,
+   "cost_per_base_power": 1.47,
+   "caps": {
+    "range": 250,
+    "rate": 160
+   },
+   "phi": 1.77,
+   "bloom_price_per_power": 1.45,
+   "cost_coefficient": 24.82,
+   "bloom_cost": 3422,
+   "power_at_bloom": 2359.7,
+   "ladders": {
+    "damage": [
+     {
+      "level": 1,
+      "value": 42.5,
+      "cost": 19,
+      "cumulative": 19
+     },
+     {
+      "level": 2,
+      "value": 75.2,
+      "cost": 36,
+      "cumulative": 55
+     },
+     {
+      "level": 3,
+      "value": 133.1,
+      "cost": 68,
+      "cumulative": 123
+     },
+     {
+      "level": 4,
+      "value": 235.6,
+      "cost": 128,
+      "cumulative": 251
+     },
+     {
+      "level": 5,
+      "value": 416.9,
+      "cost": 241,
+      "cumulative": 492
+     },
+     {
+      "level": 6,
+      "value": 738.0,
+      "cost": 455,
+      "cumulative": 947
+     },
+     {
+      "level": 7,
+      "value": 1306.2,
+      "cost": 858,
+      "cumulative": 1805
+     },
+     {
+      "level": 8,
+      "value": 2312.1,
+      "cost": 1617,
+      "cumulative": 3422
+     },
+     {
+      "level": 9,
+      "value": 4092.3,
+      "cost": 3047,
+      "cumulative": 6469
+     },
+     {
+      "level": 10,
+      "value": 7243.4,
+      "cost": 5745,
+      "cumulative": 12214
+     },
+     {
+      "level": 11,
+      "value": 12820.9,
+      "cost": 10829,
+      "cumulative": 23043
+     },
+     {
+      "level": 12,
+      "value": 22692.9,
+      "cost": 20413,
+      "cumulative": 43456
+     },
+     {
+      "level": 13,
+      "value": 40166.5,
+      "cost": 38479,
+      "cumulative": 81935
+     },
+     {
+      "level": 14,
+      "value": 71094.7,
+      "cost": 72534,
+      "cumulative": 154469
+     }
+    ],
+    "range": [
+     {
+      "level": 1,
+      "value": 153.9,
+      "cost": 3,
+      "cumulative": 3
+     },
+     {
+      "level": 2,
+      "value": 176.2,
+      "cost": 2,
+      "cumulative": 5
+     },
+     {
+      "level": 3,
+      "value": 193.2,
+      "cost": 2,
+      "cumulative": 7
+     },
+     {
+      "level": 4,
+      "value": 206.4,
+      "cost": 1,
+      "cumulative": 8
+     },
+     {
+      "level": 5,
+      "value": 216.5,
+      "cost": 1,
+      "cumulative": 9
+     },
+     {
+      "level": 6,
+      "value": 224.2,
+      "cost": 1,
+      "cumulative": 10
+     },
+     {
+      "level": 7,
+      "value": 230.2,
+      "cost": 1,
+      "cumulative": 11
+     },
+     {
+      "level": 8,
+      "value": 234.8,
+      "cost": 1,
+      "cumulative": 12
+     },
+     {
+      "level": 9,
+      "value": 238.3,
+      "cost": 1,
+      "cumulative": 13
+     },
+     {
+      "level": 10,
+      "value": 241.0,
+      "cost": 1,
+      "cumulative": 14
+     },
+     {
+      "level": 11,
+      "value": 243.1,
+      "cost": 1,
+      "cumulative": 15
+     },
+     {
+      "level": 12,
+      "value": 244.7,
+      "cost": 1,
+      "cumulative": 16
+     },
+     {
+      "level": 13,
+      "value": 245.9,
+      "cost": 1,
+      "cumulative": 17
+     },
+     {
+      "level": 14,
+      "value": 246.9,
+      "cost": 1,
+      "cumulative": 18
+     }
+    ],
+    "rate": [
+     {
+      "level": 1,
+      "value": 85.5,
+      "cost": 11,
+      "cumulative": 11
+     },
+     {
+      "level": 2,
+      "value": 104.5,
+      "cost": 8,
+      "cumulative": 19
+     },
+     {
+      "level": 3,
+      "value": 118.6,
+      "cost": 7,
+      "cumulative": 26
+     },
+     {
+      "level": 4,
+      "value": 129.2,
+      "cost": 5,
+      "cumulative": 31
+     },
+     {
+      "level": 5,
+      "value": 137.0,
+      "cost": 4,
+      "cumulative": 35
+     },
+     {
+      "level": 6,
+      "value": 142.9,
+      "cost": 3,
+      "cumulative": 38
+     },
+     {
+      "level": 7,
+      "value": 147.2,
+      "cost": 3,
+      "cumulative": 41
+     },
+     {
+      "level": 8,
+      "value": 150.5,
+      "cost": 2,
+      "cumulative": 43
+     },
+     {
+      "level": 9,
+      "value": 152.9,
+      "cost": 2,
+      "cumulative": 45
+     },
+     {
+      "level": 10,
+      "value": 154.7,
+      "cost": 1,
+      "cumulative": 46
+     },
+     {
+      "level": 11,
+      "value": 156.1,
+      "cost": 1,
+      "cumulative": 47
+     },
+     {
+      "level": 12,
+      "value": 157.1,
+      "cost": 1,
+      "cumulative": 48
+     },
+     {
+      "level": 13,
+      "value": 157.8,
+      "cost": 1,
+      "cumulative": 49
+     },
+     {
+      "level": 14,
+      "value": 158.4,
+      "cost": 1,
+      "cumulative": 50
+     }
+    ]
+   }
+  },
+  "lions_mane": {
+   "label": "Lion's Mane Disruptor",
+   "colour": "azure",
+   "build_cost": 52,
+   "base": {
+    "damage": 45,
+    "range": 140,
+    "rate": 48
+   },
+   "base_power": 38.88,
+   "cost_per_base_power": 1.337,
+   "caps": {
+    "range": 280,
+    "rate": 130
+   },
+   "phi": 1.8,
+   "bloom_price_per_power": 1.8,
+   "cost_coefficient": 48.74,
+   "bloom_cost": 7714,
+   "power_at_bloom": 4285.1,
+   "ladders": {
+    "damage": [
+     {
+      "level": 1,
+      "value": 81.0,
+      "cost": 39,
+      "cumulative": 39
+     },
+     {
+      "level": 2,
+      "value": 145.8,
+      "cost": 75,
+      "cumulative": 114
+     },
+     {
+      "level": 3,
+      "value": 262.4,
+      "cost": 143,
+      "cumulative": 257
+     },
+     {
+      "level": 4,
+      "value": 472.4,
+      "cost": 275,
+      "cumulative": 532
+     },
+     {
+      "level": 5,
+      "value": 850.3,
+      "cost": 527,
+      "cumulative": 1059
+     },
+     {
+      "level": 6,
+      "value": 1530.6,
+      "cost": 1010,
+      "cumulative": 2069
+     },
+     {
+      "level": 7,
+      "value": 2755.0,
+      "cost": 1935,
+      "cumulative": 4004
+     },
+     {
+      "level": 8,
+      "value": 4959.0,
+      "cost": 3710,
+      "cumulative": 7714
+     },
+     {
+      "level": 9,
+      "value": 8926.2,
+      "cost": 7112,
+      "cumulative": 14826
+     },
+     {
+      "level": 10,
+      "value": 16067.1,
+      "cost": 13634,
+      "cumulative": 28460
+     },
+     {
+      "level": 11,
+      "value": 28920.8,
+      "cost": 26135,
+      "cumulative": 54595
+     },
+     {
+      "level": 12,
+      "value": 52057.4,
+      "cost": 50102,
+      "cumulative": 104697
+     },
+     {
+      "level": 13,
+      "value": 93703.3,
+      "cost": 96045,
+      "cumulative": 200742
+     },
+     {
+      "level": 14,
+      "value": 168666.0,
+      "cost": 184118,
+      "cumulative": 384860
+     }
+    ],
+    "range": [
+     {
+      "level": 1,
+      "value": 169.7,
+      "cost": 5,
+      "cumulative": 5
+     },
+     {
+      "level": 2,
+      "value": 193.0,
+      "cost": 4,
+      "cumulative": 9
+     },
+     {
+      "level": 3,
+      "value": 211.5,
+      "cost": 3,
+      "cumulative": 12
+     },
+     {
+      "level": 4,
+      "value": 226.0,
+      "cost": 2,
+      "cumulative": 14
+     },
+     {
+      "level": 5,
+      "value": 237.4,
+      "cost": 2,
+      "cumulative": 16
+     },
+     {
+      "level": 6,
+      "value": 246.4,
+      "cost": 2,
+      "cumulative": 18
+     },
+     {
+      "level": 7,
+      "value": 253.6,
+      "cost": 1,
+      "cumulative": 19
+     },
+     {
+      "level": 8,
+      "value": 259.2,
+      "cost": 1,
+      "cumulative": 20
+     },
+     {
+      "level": 9,
+      "value": 263.6,
+      "cost": 1,
+      "cumulative": 21
+     },
+     {
+      "level": 10,
+      "value": 267.1,
+      "cost": 1,
+      "cumulative": 22
+     },
+     {
+      "level": 11,
+      "value": 269.8,
+      "cost": 1,
+      "cumulative": 23
+     },
+     {
+      "level": 12,
+      "value": 272.0,
+      "cost": 1,
+      "cumulative": 24
+     },
+     {
+      "level": 13,
+      "value": 273.7,
+      "cost": 1,
+      "cumulative": 25
+     },
+     {
+      "level": 14,
+      "value": 275.0,
+      "cost": 1,
+      "cumulative": 26
+     }
+    ],
+    "rate": [
+     {
+      "level": 1,
+      "value": 70.0,
+      "cost": 22,
+      "cumulative": 22
+     },
+     {
+      "level": 2,
+      "value": 86.1,
+      "cost": 17,
+      "cumulative": 39
+     },
+     {
+      "level": 3,
+      "value": 97.9,
+      "cost": 14,
+      "cumulative": 53
+     },
+     {
+      "level": 4,
+      "value": 106.5,
+      "cost": 11,
+      "cumulative": 64
+     },
+     {
+      "level": 5,
+      "value": 112.8,
+      "cost": 8,
+      "cumulative": 72
+     },
+     {
+      "level": 6,
+      "value": 117.4,
+      "cost": 6,
+      "cumulative": 78
+     },
+     {
+      "level": 7,
+      "value": 120.8,
+      "cost": 5,
+      "cumulative": 83
+     },
+     {
+      "level": 8,
+      "value": 123.3,
+      "cost": 4,
+      "cumulative": 87
+     },
+     {
+      "level": 9,
+      "value": 125.1,
+      "cost": 3,
+      "cumulative": 90
+     },
+     {
+      "level": 10,
+      "value": 126.4,
+      "cost": 2,
+      "cumulative": 92
+     },
+     {
+      "level": 11,
+      "value": 127.4,
+      "cost": 2,
+      "cumulative": 94
+     },
+     {
+      "level": 12,
+      "value": 128.1,
+      "cost": 1,
+      "cumulative": 95
+     },
+     {
+      "level": 13,
+      "value": 128.6,
+      "cost": 1,
+      "cumulative": 96
+     },
+     {
+      "level": 14,
+      "value": 129.0,
+      "cost": 1,
+      "cumulative": 97
+     }
+    ]
+   }
   }
  },
  "difficulties": {

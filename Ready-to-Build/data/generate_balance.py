@@ -66,6 +66,31 @@ FAMILIES = {
         d0=34,  r0=76,  f0=62,  r_inf=178, f_inf=184,
         phi=1.72, kappa=3.0, lam=3.2, build=40,  bloom_ppp=1.75,
     ),
+    "inky_cap": dict(
+        label="Inky Cap Mortar", colour="violet",
+        d0=28,  r0=130, f0=52,  r_inf=260, f_inf=140,
+        phi=1.76, kappa=3.6, lam=3.2, build=32,  bloom_ppp=1.40,
+    ),
+    "polypore": dict(
+        label="Polypore Shield", colour="teal",
+        d0=16,  r0=110, f0=80,  r_inf=220, f_inf=200,
+        phi=1.73, kappa=3.2, lam=3.5, build=45,  bloom_ppp=1.65,
+    ),
+    "stinkhorn": dict(
+        label="Lattice Stinkhorn", colour="coral",
+        d0=20,  r0=95,  f0=90,  r_inf=190, f_inf=220,
+        phi=1.75, kappa=3.0, lam=3.6, build=28,  bloom_ppp=1.35,
+    ),
+    "ghost_pipe": dict(
+        label="Ghost Pipe Leech", colour="silver",
+        d0=24,  r0=125, f0=60,  r_inf=250, f_inf=160,
+        phi=1.77, kappa=3.8, lam=3.4, build=36,  bloom_ppp=1.45,
+    ),
+    "lions_mane": dict(
+        label="Lion's Mane Disruptor", colour="azure",
+        d0=45,  r0=140, f0=48,  r_inf=280, f_inf=130,
+        phi=1.80, kappa=4.2, lam=3.2, build=52,  bloom_ppp=1.80,
+    ),
 }
 
 SIGMA = 1.065      # cost-per-power squeeze per upgrade level

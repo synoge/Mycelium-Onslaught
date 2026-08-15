@@ -40,6 +40,12 @@ export class Attacker {
   public y: number = 0;
   public headingAngle: number = 0;
 
+  // Status Effects & Debuffs
+  public armorShredMultiplier: number = 1.0;
+  public stunTimerMs: number = 0;
+  public reversalTimerMs: number = 0;
+  public bountyBonus: number = 0;
+
   // Lifetime tracking for targeting modes ('old' / 'young')
   public timeAliveMs: number = 0;
   public distanceTraveled: number = 0;
@@ -109,9 +115,24 @@ export class Attacker {
     this.moveSpeed = Math.max(POISON_SPEED_FLOOR, this.moveSpeed / divisor);
   }
 
+  public applyArmorShred(extraMultiplier: number): void {
+    // non-balance: cap armor shred damage multiplier at 2.5x
+    const maxShred = 2.5;
+    this.armorShredMultiplier = Math.min(maxShred, this.armorShredMultiplier + extraMultiplier);
+  }
+
+  public applyStun(durationMs: number): void {
+    this.stunTimerMs = Math.max(this.stunTimerMs, durationMs);
+  }
+
+  public applyPathReversal(durationMs: number): void {
+    this.reversalTimerMs = Math.max(this.reversalTimerMs, durationMs);
+  }
+
   public takeDamage(amount: number): boolean {
     if (this.isDead || this.reachedBase) return false;
-    this.energy -= amount;
+    const effectiveDmg = amount * this.armorShredMultiplier;
+    this.energy -= effectiveDmg;
     if (this.energy <= 0) {
       this.energy = 0;
       this.isDead = true;
@@ -128,6 +149,12 @@ export class Attacker {
 
     this.timeAliveMs += deltaMs;
 
+    // Handle Stun
+    if (this.stunTimerMs > 0) {
+      this.stunTimerMs -= deltaMs;
+      return;
+    }
+
     // Poison recovery: +2 per movement tick, clamped to moveSpeedInit (ENGINE-SPEC §3.4)
     if (this.moveSpeed < this.moveSpeedInit) {
       this.moveSpeed = Math.min(this.moveSpeedInit, this.moveSpeed + POISON_RECOVERY_PER_TICK);
@@ -137,6 +164,28 @@ export class Attacker {
     // non-balance: 1000 ms per second time conversion
     const distToMove = (this.moveSpeed * deltaMs) / 1000;
     let remainingMove = distToMove;
+
+    // Path Reversal (Neural Disruptor Stagger)
+    if (this.reversalTimerMs > 0) {
+      this.reversalTimerMs -= deltaMs;
+      if (this.currentWaypointIndex > 0) {
+        const prevWpIdx = this.currentWaypointIndex - 1;
+        const targetPos = this.getJitteredWaypoint(prevWpIdx, map);
+        const dx = targetPos.x - this.x;
+        const dy = targetPos.y - this.y;
+        const distToPrev = Math.sqrt(dx * dx + dy * dy);
+        if (distToPrev <= remainingMove) {
+          this.x = targetPos.x;
+          this.y = targetPos.y;
+          this.currentWaypointIndex = prevWpIdx;
+        } else {
+          const ratio = remainingMove / distToPrev;
+          this.x += dx * ratio;
+          this.y += dy * ratio;
+        }
+        return;
+      }
+    }
 
     while (remainingMove > 0 && !this.reachedBase) {
       const nextWpIdx = this.currentWaypointIndex + 1;

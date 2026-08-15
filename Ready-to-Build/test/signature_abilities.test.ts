@@ -37,7 +37,6 @@ describe('Signature Abilities (A-10)', () => {
     );
 
     // 1. Line configuration: F1 -> F2 -> F3 -> F4 (each within range of the next, in a line)
-    // Tower range is ~104+
     const lineTowers = [
       new Tower(1, 'foxfire', 100, 100, loader),
       new Tower(2, 'foxfire', 150, 100, loader),
@@ -45,28 +44,24 @@ describe('Signature Abilities (A-10)', () => {
       new Tower(4, 'foxfire', 250, 100, loader),
     ];
     cm.towers = lineTowers;
-    const lineDamage = cm.executeLaserChain(lineTowers[0], dummyTarget);
+    const lineResult = cm.executeLaserChain(lineTowers[0], dummyTarget);
 
-    // 2. Star configuration: Central F1 linked to F2, F3, F4 (all at 100, 100, while neighbours do not link to each other)
+    // 2. Star configuration: Central F1 linked to F2, F3, F4
     const starTowers = [
       new Tower(10, 'foxfire', 100, 100, loader),
       new Tower(11, 'foxfire', 100, 150, loader), // Below
       new Tower(12, 'foxfire', 150, 100, loader), // Right
       new Tower(13, 'foxfire', 50, 100, loader),  // Left
     ];
-    // In star, distance between F11 and F12 is ~70.7, but if placed at ~120 distance from each other, only F1 links to all 3
     starTowers[1].x = 100; starTowers[1].y = 180;
     starTowers[2].x = 180; starTowers[2].y = 100;
     starTowers[3].x = 20;  starTowers[3].y = 100;
 
     cm.towers = starTowers;
-    const starDamage = cm.executeLaserChain(starTowers[0], dummyTarget);
+    const starResult = cm.executeLaserChain(starTowers[0], dummyTarget);
 
-    // In a 4-node line, the recursive compounding is 1 + 1.25*(1 + 1.25*(1 + 1.25*1)) = 4.203x base
-    // In a star with 3 leaves, damage is 1 + 3 * 1.25 = 4.75 or compounding depth is shallower
-    // Because of recursion depth compounding (1.25^3 vs 3*1.25), line compounding depth (1.25 * (1.25 * 1.25)) yields higher compounding along deep chains!
-    expect(lineDamage).toBeGreaterThan(0);
-    expect(starDamage).toBeGreaterThan(0);
+    expect(lineResult.totalDamage).toBeGreaterThan(0);
+    expect(starResult.totalDamage).toBeGreaterThan(0);
   });
 
   it('guarantees no structure contributes twice to a laser shot', () => {
@@ -95,11 +90,11 @@ describe('Signature Abilities (A-10)', () => {
     ];
     cm.towers = triangleTowers;
 
-    const dmg = cm.executeLaserChain(triangleTowers[0], dummyTarget);
+    const res = cm.executeLaserChain(triangleTowers[0], dummyTarget);
 
     // All 3 towers should be marked claimed exactly once
     expect(triangleTowers.every((t) => t.claimedThisShot)).toBe(true);
-    expect(Number.isFinite(dmg)).toBe(true);
+    expect(Number.isFinite(res.totalDamage)).toBe(true);
   });
 
   it('stores holding pattern projectiles for Artillery at range>=3 and rate>=3', () => {
